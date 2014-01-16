@@ -1,0 +1,2938 @@
+{
+  "Add": {
+    "desc": [
+      "Returns the sum of N1 and N2."
+    ],
+    "args": [
+      "N1    First value to add",
+      "N2    Second value to add"
+    ],
+    "exps": [
+      "Given @abc=10 and @def=20",
+      "%%=Add(@abc,@def)=%%",
+      "The system returns:",
+      "30"
+    ],
+    "def": "Add(N1,N2)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Add"
+  },
+  "AddMscrmListMember": {
+    "desc": [
+      "Adds the indicated record to the indicated marketing list.  No return value."
+    ],
+    "args": [
+      "S1    The GUID of the record to add to the marketing list",
+      "S2    The GUID of the marketing list receiving the marketing list",
+      "%%[",
+      "\/* Adds a lead, contact or account to a marketing list *\/",
+      "var @guid, @list_guid",
+      "set @guid = '2E438216-2DEE-DD11-AB3E-005056AD58C4'",
+      "set @list_guid = '0A167EEC-6436-DD11-B7BE-000E7F30252C'",
+      "AddMscrmListMember(@guid, @list_guid)",
+      "]%%"
+    ],
+    "exps": [
+      
+    ],
+    "def": "AddMscrmListMember(S1,S2)",
+    "type": "function",
+    "cat": "For Use With Microsoft Dynamics Crm",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026mpscript_functions_for_use_with_microsoft_dynamics_crm\/#AddMscrmListMember"
+  },
+  "AddObjectArrayItem": {
+    "desc": [
+      "Appends an object to an array on an API object."
+    ],
+    "args": [
+      "O1    The API object containing the array",
+      "S1    The array property to which an item is to be added",
+      "S2    The item to be added to the array"
+    ],
+    "exps": [
+      "Given the example below:",
+      "AddObjectArrayItem(@mySubscriber,\"Attribute\",@myNewAttribute)",
+      "The Attributes array on the mySubscriberObject would receive the attribute myNewAttribute."
+    ],
+    "def": "AddObjectArrayItem(O1,S1,S2)",
+    "type": "function",
+    "cat": "Api",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/api_ampscript_functions\/#AddObjectArrayItem"
+  },
+  "AttachFile": {
+    "desc": [
+      "AMPscript email attachments must be enabled in your account before you can use this function.  Contact ExactTarget if you would like this feature enabled in your account. You should also contact ExactTarget to adjust the threshold of errors that cause the send job to stop prematurely. This could be helpful in preventing a single error from stopping the entire job.",
+      "Attaches a file to an outgoing email message and can include a link to the file when you view the email as a web page:"
+    ],
+    "args": [
+      "S1    Indicates whether to pull files from an HTTP source, the ExactTarget Enhanced FTP site, or the portfolio.  Valid values include:",
+      "HTTP",
+      "FTP",
+      "Portfolio",
+      "S2    Indicates from where the function pulls the attachment. These files must be available at the time of the send, or else your send will encounter an error.",
+      "If S1 is HTTP, S2 is the URL of your file.",
+      "If S1 is FTP, S2 is the name of the file in the Import folder of your Enhanced FTP site.",
+      "If S1 is Portfolio, S2 is the External Key of the item in your Portfolio folder.",
+      "S3    Indicates the name to give the file when it is attached to the email.  This argument is optional and will use the current attachment's name if none is specified.",
+      "B1    Indicates whether a link to attached file is seen in View As A Web Page.  This argument is optional and only used if S1 is HTTP.",
+      "S4    Sets the URL of the attachment link to be used for View As A Web Page.  This argument is optional and only used if S1 is HTTP.",
+      "S5    Sets the text for the attachment link to be used in View As A Web Page.  This argument is optional and only used if S1 is HTTP.",
+      "N1    Sets the number of days the link attachment will be seen in View As A Web Page. This argument is optional and only used if S1 is HTTP."
+    ],
+    "exps": [
+      "The following example attaches a PDF document from a website to your outgoing email.  The email also includes a link to the file in View As A Web Page with the text \"Click here to download your catalog.\"  That link expires from View As A Web Page after four days.",
+      "%%=AttachFile(\"HTTP\",\"http:\/\/example.com\/catalog.pdf\",true,\"http:\/\/example.com\/catalog.pdf\",\"Click here to download your catalog\",4)=%%",
+      "If you want to rename the attachment, enter the optional filename argument as shown below:",
+      "%%=AttachFile(\"HTTP\",\"http:\/\/example.com\/catalog.pdf\",\"newFileName.pdf\",true,\"http:\/\/example.com\/catalog.pdf\",\"Click here to download your catalog\",4)=%%",
+      "The next example attaches a Word document from the import folder of the ExactTarget  Enhanced FTP site.  It also concatenates a new filename from the recipient's full name and the string \"NewCatalog.doc\" at the time of attachment.",
+      "%%=AttachFile(\"FTP\",\"productCatalog.doc\",Concat(FullName,\"NewCatalog.doc\"))=%%",
+      "The following file types can be attached to emails sent through ExactTarget :",
+      "Microsoft Word documents (.doc, .docx)",
+      "Microsoft Excel documents (.xls, .xlsx)",
+      "Microsoft Powerpoint documents (.ppt, .pptx)",
+      "Adobe PDF documents (.pdf)",
+      "ZIP archive files (.zip)",
+      "Compressed archive files (.rar)",
+      "PNG images (.png)",
+      "GIF images (.gif)",
+      "JPEG images (.jpg, .jpeg)",
+      "TIFF images (.tif, .tiff)",
+      "This function supports secure transmission over HTTPS. If the remote server does not respond to the AttachFile() call within 30 seconds, the send reschedules for 15 minutes later and tries again."
+    ],
+    "def": "AttachFile(S1,S2,S3,B1,S4,S5,N1)",
+    "type": "function",
+    "cat": "Content",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/content_ampscript_functions\/#AttachFile"
+  },
+  "AttributeValue": {
+    "desc": [
+      "Returns the value of a subscriber attribute."
+    ],
+    "args": [
+      "S1    The name of the attribute to be returned"
+    ],
+    "exps": [
+      "Combined with a Lookup call to get the name of an attribute, you can retrieve an attribute's value and pass it into a variable. For example, this code retrieves the value of zipcode.",
+      "VAR @AttributeName, @AttributeValue",
+      "SET @AttributeName = Lookup(\"PostalCode\",\"zipcode\",\"PostalCode\",Indianapolis)",
+      "SET @AttributeValue = AttributeValue(@AttributeName)"
+    ],
+    "def": "AttributeValue(S1)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#AttributeValue"
+  },
+  "AuthenticatedEmployeeID": {
+    "desc": [
+      "Returns the employee ID of the authenticated landing page user."
+    ],
+    "args": [
+      
+    ],
+    "exps": [
+      "set @ID = AuthenticatedEmployeeID()",
+      "The system sets @ID to the value of the employee ID for the authenticated landing page user."
+    ],
+    "def": "AuthenticatedEmployeeID()",
+    "type": "function",
+    "cat": "Microsite And Landing Page",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026de\/microsite_and_landing_page_ampscript_functions\/#AuthenticatedEmployeeID"
+  },
+  "AuthenticatedEmployeeNotificationAddress": {
+    "desc": [
+      "Returns the notification email address of the authenticated landing page user."
+    ],
+    "args": [
+      
+    ],
+    "exps": [
+      "set @address= AuthenticatedEmployeeNotificationAddress()",
+      "The system sets @address to the value of the notification email address for the authenticated landing page user."
+    ],
+    "def": "AuthenticatedEmployeeNotificationAddress()",
+    "type": "function",
+    "cat": "Microsite And Landing Page",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026landing_page_ampscript_functions\/#AuthenticatedEmployeeNotificationAddress"
+  },
+  "AuthenticatedEmployeeUserName": {
+    "desc": [
+      "Returns the username of the authenticated landing page user."
+    ],
+    "args": [
+      
+    ],
+    "exps": [
+      "set @username = AuthenticatedEmployeeUserName()",
+      "The system sets @username to the value of the username for the authenticated landing page user."
+    ],
+    "def": "AuthenticatedEmployeeUserName()",
+    "type": "function",
+    "cat": "Microsite And Landing Page",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026rosite_and_landing_page_ampscript_functions\/#AuthenticatedEmployeeUserName"
+  },
+  "AuthenticatedEnterpriseID": {
+    "desc": [
+      "Returns the enterprise ID of the authenticated landing page user."
+    ],
+    "args": [
+      
+    ],
+    "exps": [
+      "set @ID = AuthenticatedEnterpriseID()",
+      "The system sets @ID to the value of the enterprise ID for the authenticated landing page user."
+    ],
+    "def": "AuthenticatedEnterpriseID()",
+    "type": "function",
+    "cat": "Microsite And Landing Page",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026\/microsite_and_landing_page_ampscript_functions\/#AuthenticatedEnterpriseID"
+  },
+  "AuthenticatedMemberID": {
+    "desc": [
+      "Returns the member ID of the authenticated landing page user."
+    ],
+    "args": [
+      
+    ],
+    "exps": [
+      "set @ID = AuthenticatedMemberID()",
+      "The system sets @ID to the value of the member ID for the authenticated landing page user."
+    ],
+    "def": "AuthenticatedMemberID()",
+    "type": "function",
+    "cat": "Microsite And Landing Page",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026uide\/microsite_and_landing_page_ampscript_functions\/#AuthenticatedMemberID"
+  },
+  "AuthenticatedMemberName": {
+    "desc": [
+      "Returns the member name of the authenticated landing page user."
+    ],
+    "args": [
+      
+    ],
+    "exps": [
+      "set @membername = AuthenticatedMemberName()",
+      "The system sets @membername to the value of the member name for the authenticated landing page user."
+    ],
+    "def": "AuthenticatedMemberName()",
+    "type": "function",
+    "cat": "Microsite And Landing Page",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026de\/microsite_and_landing_page_ampscript_functions\/#AuthenticatedMemberName"
+  },
+  "BarCodeURL": {
+    "desc": [
+      "Takes the information supplied in the function and generates the specified bar code.",
+      "This function requires additional configuration by ExactTarget for use in your account. Your account must also be enabled to use the Live Content feature. Please contact your ExactTarget representative for more information on enabling this feature."
+    ],
+    "args": [
+      "S1    Value to be converted into a bar code",
+      "S2    Type of bar code to create - possible values listed below:",
+      "Codabar",
+      "Code11",
+      "Code128Auto",
+      "Code128A",
+      "Code128B",
+      "Code128C",
+      "Code39",
+      "Code39Ext",
+      "Code93",
+      "Code93Ext",
+      "Ean13",
+      "Ean8",
+      "Industr25",
+      "Interl25",
+      "Mat25",
+      "MSI",
+      "Postnet",
+      "Planet",
+      "Telepen",
+      "UPCa",
+      "UPCe",
+      "OneCode",
+      "DataMatrix",
+      "PDF417",
+      "PlainText",
+      "N1    Height of bar code in pixels",
+      "N2    Width of bar code in pixels",
+      "S3    Checksum value for bar code (optional)",
+      "B1    Display bar code value from S1 as text",
+      "0    Displays the alt text provided in the S4 value",
+      "1    Displays the S1 value as text with the barcode",
+      "S4    Alt text to display if B1 contains a value of 1",
+      "N3    Orientation of the bar code",
+      "0        Display bar code horizontally (default)",
+      "90      Display bar code rotated 90? to the right",
+      "180    Display bar code rotated 180?",
+      "270    Display bar code rotated 90? to the left",
+      "B1    Display a transparent background for the barcode",
+      "0    Do not display a transparent background",
+      "1    Display a transparent background"
+    ],
+    "exps": [
+      "When the AMPscript below is placed in a content area, the email messages receives the applicable bar code at the time of the send:",
+      "<p>",
+      "<img style=\"width: 400px; height: 200px\" title=barcode border=0 hspace=0 alt=barcode src='%%=BarCodeURL(\"BBY01-397101069285\",\"Code39\", 400, 200, 0)=%%' width=400 height=200>",
+      "<\/p>",
+      "The AMPscript generates a bar code based on the value in Code39 format in the specified height and width.",
+      "The AMPscript below displays the bar code with the listed alt text and rotated 90? to the right on a transparent background.",
+      "%%=BarCodeURL(\"BBY01-397101069285\",\"Code39\", 400, 200, 0, 0, \"Alt Text\", 90, 1)=%%",
+      "The AMPscript below displays the bar code with the S1 value as text and rotated 90? to the right on a transparent background. Note that the single quotes must be included when using the S1 value as text to prevent the function from returning an error.",
+      "%%=BarCodeURL('9X4H341ZTKTPMN7T','Code128B', 231, 55, 0, 1,'',90,1)=%%"
+    ],
+    "def": "BarCodeURL(S1,S2,N1,N2,S3)",
+    "type": "function",
+    "cat": "Content",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/content_ampscript_functions\/#BarCodeURL"
+  },
+  "Base64Decode": {
+    "desc": [
+      "Decodes Base64 information into human-readable text."
+    ],
+    "args": [
+      "S1    The location of the Base64 text, either in a variable or a data extension field (via the Lookup() AMPscript function)",
+      "S2    The character type to be used in the decoding process, i.e. UTF-8, UTF-16 or other .NET-supported character type (Optional)",
+      "B1    Indicates whether the email send proceeds if the value of S1 is incorrectly coded. Valid values include the following:",
+      "0 - The send proceeds even if that send encounters an error",
+      "1 - The send fails if it encounters an error and no message goes out (this is the default behavior if not specified)"
+    ],
+    "exps": [
+      "%%[",
+      "VAR @encodedStr, @decodedStr",
+      "SET @encodedStr = Lookup(\"Base64Info\", \"ReceiptData\", \"ReceiptKey\", 1)",
+      "SET @decodedStr = Base64Decode(@encodedStr,\"UTF-8\")",
+      "]%%",
+      "The Lookup() function retrieves the Base64 information from the data extension, and the Base64Decode() decodes the Base64 information and assigns that value to the @decodedStr variable in UTF-8 format. If for some reason the value of @encodedStr is incorrect, the 1 at the end of the Base64Decode() function causes the send to fail due to the error.",
+      "%%[",
+      "VAR @encodedStr, @decodedStr",
+      "SET @encodedStr = Lookup(\"Base64Info\", \"ReceiptData\", \"ReceiptKey\", 0)",
+      "SET @decodedStr = Base64Decode(@encodedStr,\"UTF-8\", 1)",
+      "]%%",
+      "If the value was 0, the send would continue and the email would contain an empty string instead of the decoded data."
+    ],
+    "def": "Base64Decode(S1,S2)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Base64Decode"
+  },
+  "Base64Encode": {
+    "desc": [
+      "Encodes human-readable text into Base64 information."
+    ],
+    "args": [
+      "S1    The location of the text to be encrypted, either in a variable or a data extension field (via the Lookup() AMPscript function)"
+    ],
+    "exps": [
+      "%%[",
+      "VAR @normalStr, @encodedStr",
+      "SET @normalStr = Lookup(\"ForBase64Info\", \"ReceiptData\", \"ReceiptKey\", 1)",
+      "SET @encodedStr = Base64Encode(@normalStr)",
+      "]%%",
+      "The Lookup() function retrieves the text information from the data extension, and the Base64Encode() encodes the text into Base64 information and assigns that value to the @encodedStr variable."
+    ],
+    "def": "Base64Encode(S1)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Base64Encode"
+  },
+  "BeginImpressionRegion": {
+    "desc": [
+      "Denotes the beginning of a region to be tracked with impression tracking."
+    ],
+    "args": [
+      "S1    Name of the impression region"
+    ],
+    "exps": [
+      "%%=BeginImpressionRegion(Header)=%%",
+      "The system begins an impression tracking region called Header."
+    ],
+    "def": "BeginImpressionRegion(S1)",
+    "type": "function",
+    "cat": "Content",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/content_ampscript_functions\/#BeginImpressionRegion"
+  },
+  "BuildOptionList": {
+    "desc": [
+      "Builds a list of options from which a message recipient can select."
+    ],
+    "args": [
+      "S1    Value of this variable determines which option will be selected by default",
+      "S2    Value of first option on list",
+      "S3    Presentation name of first option on list",
+      "S2 and S3 are repeated for each option on the list."
+    ],
+    "exps": [
+      "Given attribA=2",
+      "%%=BuildOptionList(AttribA, \"1\", \"One\", \"2\", \"Two\", \"3\", \"Three\")=%%",
+      "The system returns:",
+      "<option value=\"1\">One<\/option>",
+      "<option value=\"2\" selected=\"selected\">Two<\/option>",
+      "<option value=\"3\">Three<\/option>"
+    ],
+    "def": "BuildOptionList(S1,S2,S3)",
+    "type": "function",
+    "cat": "Content",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/content_ampscript_functions\/#BuildOptionList"
+  },
+  "BuildRowSetFromString": {
+    "desc": [
+      "Creates a rowset from a character string by splitting the string at the specified delimiter."
+    ],
+    "args": [
+      "S1    String to be split",
+      "S2    Optional parameter to indicate split. For example, comma (,) or pipe symbol (|)."
+    ],
+    "exps": [
+      "BuildRowsetFromString(\"123|456|789\", \"|\")",
+      "Returns a data table with three rows:",
+      "123 456 789",
+      "The sample code below demonstrates how to pass attribute names and process them:",
+      "%%[",
+      "Var @queryparams",
+      "Var @row",
+      "Var @name",
+      "Var @value",
+      "Set @queryparams = BuildRowsetFromString(QueryParameter(\"names\"),\"|\")",
+      "for @i = 1 to Rowcount(@queryparams) do",
+      "Set @row = Row(@queryparams, @i)",
+      "Set @name = Field(@row,1)",
+      "Set @value = QueryParameter(@name)",
+      "]%%",
+      "Passed <b>name:<\/b> %%= v(@name) =%% with <b>value:<\/b> %%= v(@value) =%%<br\/>",
+      "%%[",
+      "next @i",
+      "]%%",
+      "When passed the input below:",
+      "names=career|firstname|lastname&career=marketer&firstname=Angela&lastname=Ruiz",
+      "The AMPscript returns the following:",
+      "Passed name: career with value: marketer",
+      "Passed name: firstname with value: Angela",
+      "Passed name: lastname with value: Ruiz",
+      "This function returns the rowset in one column, and this column does not have an assigned name. When referring to this column within a function (such as the example listed below), you must refer to the column with an ordinal number:",
+      "Field(Row(BuildRowSetFromString('123|456', '|'), 1), 1)"
+    ],
+    "def": "BuildRowSetFromString(S1,S2)",
+    "type": "function",
+    "cat": "Content",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/content_ampscript_functions\/#BuildRowSetFromString"
+  },
+  "BuildRowSetFromXML": {
+    "desc": [
+      "Creates a rowset from XML, and can return an empty rowset on error. This function is for use at send time only.",
+      "Value:    Value of the node (empty for CDATA, Comment, Document, Document Fragments, DocumentType, Entities, Entity References, Notation, ProcessingInformation, Whitespace, and XmlDeclaration nodes) For element nodes, this is the text of the node.",
+      "XML:    Any XML contained within the node (empty, if the node does not contain XML). Also provides a column for each attribute found in any of the nodes. If a node is missing a value for that attribute, an empty value is returned."
+    ],
+    "args": [
+      "S1    XML within the node",
+      "S2    XPATH argument",
+      "B1    The returnEmptyRowsetOnError, specified as a Boolean"
+    ],
+    "exps": [
+      "Given the @xml variable contains the following text:",
+      "<root>",
+      "<Flight origin=\"IND\" dest=\"NYC\">100.00<\/Flight>",
+      "<Flight origin=\"IND\" dest=\"LAX\" carrier=\"UAL\">200.00<\/Flight>",
+      "<Flight origin=\"IND\" dest=\"SEA\">500<PerBagSurcharge>25<\/PerBagSurcharge><\/Flight>",
+      "<\/root>",
+      "Using the following function call:",
+      "BuildRowsetFromXml(@xml, \"\/\/Flight\", 1)",
+      "The system returns the following rowset:",
+      "Value       Xml                                                                         Origin_att      Dest_att        Carrier_att 100.00      100.00                                                                      IND                 NYC                 \"\" 200.00       200.00                                                                     IND                 LAX                 UAL 500           500<PerBagSurcharge>25<\/PerBagSurcharge>          IND                 SEA                 \"\""
+    ],
+    "def": "BuildRowSetFromXML(S1,S2,B1)",
+    "type": "function",
+    "cat": "Content",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/content_ampscript_functions\/#BuildRowSetFromXML"
+  },
+  "Char": {
+    "desc": [
+      "Returns the ASCII character specified by the ASCII character code in the first parameter. An optional second parameter specifies the number of times to repeat the return of the ASCII character."
+    ],
+    "args": [
+      "S1    Character Code",
+      "S2    Number of times to repeat the ASCII character (Optional)"
+    ],
+    "exps": [
+      "Given the function below:",
+      "Char(65)",
+      "The system returns:",
+      "A",
+      "Given the function below:",
+      "Char(65,3)",
+      "The system returns:",
+      "AAA",
+      "Given the function below:",
+      "%%=CHAR(65)=%%%%=CHAR(66)=%%%%=CHAR(67)=%%",
+      "The system returns:",
+      "ABC",
+      "The code sample below pulls content from a data extension and replaces and carriage return-line feed combinations with an HTML <br> tag.",
+      "%%[",
+      "VAR @content, @replacedContent",
+      "\/* This will pull the content out of the DE and replace any CR-LF's with HTML BR tags. *\/",
+      "SET @content = Lookup(\"ReplaceTest\", \"Value\", \"Key\", \"1\")",
+      "SET @replacedContent = Replace(@content, Concat(CHAR(13), CHAR(10)), \"<BR>\")",
+      "]%%",
+      "%%=V(@content)=%%",
+      "%%=V(@replacedContent)=%%"
+    ],
+    "def": "Char(S1,S2)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Char"
+  },
+  "ClaimRow": {
+    "desc": [
+      "Returns a row from a data extension and locks the row to prevent the information from being used in another context until the row's \"claimed\" status changes. If the function finds a row with the correct matching set of keys, the function returns those values. If no claimed row is found, the function sets key values in an unclaimed row and returns that row. If no row is returned by this function at all, you must set up the function to raise an error, ignore the result, or provide default content.",
+      "The data extensions used with this function must possess the following characteristics:",
+      "A Boolean column that indicates whether the row has been claimed or not (a true value indicates the row as claimed)",
+      "An index on the Boolean and _CustomObjectKey columns to allow for an efficient lookup of claimed rows",
+      "One or more key columns used to identify the object or recipient that has claimed or is claiming the row (this column must be nullable)",
+      "An index on the key column or columns to allow an efficient lookup of claimed rows",
+      "The application automatically sets indexes on sendable data extensions, and you should contact your ExactTarget representative to set indexes for non-sendable data extensions.",
+      "You can also include an optional column to receive a datetime stamp at the time the application executes the ClaimedRow() function. You must name this column ClaimedDate and assign it the Date data type. When this column exists, the ClaimedDate value in that row receives the datetime stamp for when that row was claimed.",
+      "You cannot overwrite or delete the data extension with a claimed status."
+    ],
+    "args": [
+      "S1    The name of the data extension for the claim or retrieve action",
+      "S2    The name of the column in the data extension that indicates whether the row is claimed or not",
+      "S3    The name of the data extension key column",
+      "S4    The value of the data extension key column",
+      "You can specify multiple pairs of column names and values, depending on your needs."
+    ],
+    "exps": [
+      "The code below claims a row or retrieves the information from a previously claimed row. If no row matches the specified values, the function indicates no coupon codes are available.",
+      "<table>",
+      "<tr>",
+      "<td>Coupon Code (ClaimRow)<\/td>",
+      "<td>",
+      "%%[VAR @CouponRow",
+      "SET @CouponRow = ClaimRow(\"Coupon\", \"IsClaimed\", \"JobID\", JobID, \"ListID\", ListID, \"BatchID\", _JobSubscriberBatchID, \"SubscriberID\", SubscriberID)",
+      "IF EMPTY(@CouponRow) THEN ]%%",
+      "No coupons available",
+      "%%[ ELSE ]%%",
+      "Your Coupon Code is %%= FIELD(@CouponRow,\"CouponCode\") =%%",
+      "%%[ ENDIF ]%%",
+      "<\/td>",
+      "<\/tr>",
+      "<\/table>",
+      "Use the example data extension below as a model for the data extension you use to store and claim rows:",
+      "Column NameTypeNullDefault Value",
+      "_CustomObjectKey",
+      "bigint",
+      "No",
+      "Identity",
+      "CouponCode",
+      "nvarchar(30)",
+      "No",
+      "IsClaimed",
+      "Boolean",
+      "No",
+      "0",
+      "JobID",
+      "int",
+      "Yes",
+      "ListID",
+      "int",
+      "Yes",
+      "BatchID",
+      "int",
+      "Yes",
+      "SubscriberID",
+      "int",
+      "Yes",
+      "EmailAddress",
+      "nvarchar(100)",
+      "Yes",
+      "ClaimedDate",
+      "datetime",
+      "Yes"
+    ],
+    "def": "ClaimRow(S1,S2,S3,S4,...Sn,Sn+1)",
+    "type": "function",
+    "cat": "Data Extension",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/data_extension_ampscript_functions\/#ClaimRow"
+  },
+  "ClaimRowValue": {
+    "desc": [
+      "Returns a value from a column in an data extension and locks the row to prevent the information from being used in another context until the value's \"claimed\" status changes. If the function finds a value with the correct matching set of keys, the function returns the requested column value. If no row is found, the function attempts to claim an unused row. If a row cannot be found or claimed, the function returns the specified default value. Otherwise, the function returns an error.",
+      "The data extensions used with this function must possess the following characteristics:",
+      "A Boolean column that indicates whether the row has been claimed or not (a true value indicates the row as claimed)",
+      "An index on the Boolean and _CustomObjectKey columns to allow for an efficient lookup of claimed rows",
+      "One or more key columns used to identify the object or recipient that has claimed or is claiming the row (this column must be nullable)",
+      "An index on the key column or columns to allow an efficient lookup of claimed rows",
+      "The application automatically sets indexes on sendable data extensions, and you should contact your ExactTarget representative to set indexes for non-sendable data extensions",
+      "You can also include an optional column to receive a datetime stamp at the time the application executes the ClaimedRowValue() function. You must name this column ClaimedDate and assign it the Date data type. When this column exists, the ClaimedDate value in that row receives the datetime stamp for when the value and row were claimed.",
+      "You cannot overwrite or delete the data extension with a \"claimed\" status."
+    ],
+    "args": [
+      "S1    The name of the data extension for the claim or retrieve action",
+      "S2    The name of the column in the data extension from which the return value is retrieved",
+      "S3    The name of the column in the data extension that indicates whether the row is claimed or not",
+      "S4    (Optional) The default value to use in case the function fails to claim a row",
+      "S5    The name of the data extension key column",
+      "S6    The value of the data extension key column",
+      "You can specify multiple pairs of column names and values, depending on your needs. If no row is returned by this function, you must set up the function to raise an error, ignore the result, or provide default content."
+    ],
+    "exps": [
+      "The sample below retrieves the same information from the same row any time a specific job sends to a specific recipient.",
+      "<table>",
+      "<tr>",
+      "<td>Coupon Code (ClaimRowValue no default)<\/td>",
+      "<td>%%= ClaimRowValue(\"Coupon\", \"CouponCode\", \"IsClaimed\", , \"JobID\", JobID, \"ListID\", ListID, \"SubscriberID\", SubscriberID) =%%<\/td>",
+      "<\/tr>",
+      "<\/table>",
+      "The sample below retrieves a distinct row each time a specific job sends to a specific recipient. If the function does not find an appropriate value, it uses the provided default information.",
+      "<table>",
+      "<tr>",
+      "<td>Coupon Code (ClaimRowValue with default)<\/td>",
+      "<td>%%= ClaimRowValue(\"Coupon\", \"CouponCode\", \"IsClaimed\", \"None Available\", \"JobID\", JobID, \"ListID\", ListID, \"BatchID\", _JobSubscriberBatchID, \"SubscriberID\", SubscriberID) =%%<\/td>",
+      "<\/tr>",
+      "<\/table>",
+      "Use the example data extension below as a model for the data extension you use to store and claim rows:",
+      "Column NameTypeNullDefault Value",
+      "_CustomObjectKey",
+      "bigint",
+      "No",
+      "Identity",
+      "CouponCode",
+      "nvarchar(30)",
+      "No",
+      "IsClaimed",
+      "Boolean",
+      "No",
+      "0",
+      "JobID",
+      "int",
+      "Yes",
+      "ListID",
+      "int",
+      "Yes",
+      "BatchID",
+      "int",
+      "Yes",
+      "SubscriberID",
+      "int",
+      "Yes",
+      "EmailAddress",
+      "nvarchar(100)",
+      "Yes",
+      "ClaimedDate",
+      "datetime",
+      "Yes"
+    ],
+    "def": "ClaimRowValue(S1,S2,S3,S4,S5,S6,...Sn, Sn+1)",
+    "type": "function",
+    "cat": "Data Extension",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/data_extension_ampscript_functions\/#ClaimRowValue"
+  },
+  "Concat": {
+    "desc": [
+      "Concatenates the strings specified in the arguments."
+    ],
+    "args": [
+      "S1-Sn    Strings to concatenate"
+    ],
+    "exps": [
+      "%%=Concat(\"a\",\"b\",\"c\")=%%",
+      "The system returns:",
+      "abc"
+    ],
+    "def": "Concat(S1,S2,...Sn)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Concat"
+  },
+  "ContentArea": {
+    "desc": [
+      "Returns content contained in the specified stored content area."
+    ],
+    "args": [
+      "I1    The ID of the content area to return.",
+      "S1    Impression region name. Use this optional parameter for impression tracking. Setting an impression region this way is the same as using the BeginImpressionRegion() function as the first statement in the content area.  Impression regions started this way remain open after the function executes.",
+      "B1    The ThrowError value defaults to true. When the value is true, the function throws an error If the specified content area is not found or not valid. If the value is false, the function uses the value of the DefaultContent parameter instead of throwing an error. This parameter is optional.",
+      "S3    The DefaultContent value defaults to an empty string. If the ThrowError value is false, the DefaultContent value is used. This parameter is optional.",
+      "N1    This output parameter returns the status of the call (optional). Possible values include:",
+      "0    The content area was found and successfully rendered",
+      "-1   Either the content area was not found or not valid. In this case, the function returns the DefaultContent value."
+    ],
+    "exps": [
+      "%%=ContentArea(\"14\")=%%",
+      "The system returns the content of content area 14."
+    ],
+    "def": "ContentArea(I1,S1,B1,S2,N1)",
+    "type": "function",
+    "cat": "Content",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/content_ampscript_functions\/#ContentArea"
+  },
+  "ContentAreaByName": {
+    "desc": [
+      "Returns the content contained in the specified stored content area."
+    ],
+    "args": [
+      "S1    Name of the content area for which to return content. If the content area is stored in a folder within the my contents folder, the name includes the path to the content area.",
+      "S2    Impression region name. Use this optional parameter for impression tracking. Setting an impression region this way is the same as using the BeginImpressionRegion() function as the first statement in the content area.  Impression regions started this way remain open after the function executes.",
+      "B1    The ThrowError value defaults to true. When the value is true, the function throws an error If the specified content area is not found or not valid. If the value is false, the function uses the value of the DefaultContent parameter instead of throwing an error. This parameter is optional.",
+      "S3    The DefaultContent value defaults to an empty string. If the ThrowError value is false, the DefaultContent value is used. This parameter is optional.",
+      "N1    This output parameter returns the status of the call (optional). Possible values include:",
+      "0    The content area was found and successfully rendered",
+      "-1   Either the content area was not found or not valid. In this case, the function returns the DefaultContent value."
+    ],
+    "exps": [
+      "%%=ContentAreaByName(\"my contents\\Stocks\\Weekly Portfolio\")=%%",
+      "The system returns the content of stored content area named Weekly Portfolio in the Stocks folder.",
+      "In this example:",
+      "%%=ContentAreaByName(\"my contents\\OptOut_Page\\Form\\Opt Out Form 2\",\"\",0,ContentAreaByName(\"my contents\\OptOut_Page\\Form\\Opt Out Form Default\"))=%%",
+      "The function displays the Opt Out Form Default page if no other content is found.",
+      "This example concatenates the base content area name with a Locale ID to provide an opt-out form in the appropriate language. If no Locale ID is specified, the function defaults to EN-US.",
+      "%%=ContentAreaByName(Concat(\"my contents\\OptOut_Page\\Form\\Opt Out Form \",Uppercase(IIF(Empty(QueryParameter(\"lang\")),\"en-us\",QueryParameter(\"lang\")))),\"\",0,ContentAreaByName(\"my contents\\OptOut_Page\\Form\\Opt Out Form EN-US\"))=%%"
+    ],
+    "def": "ContentAreaByName(S1,S2,B1,S3,N1)",
+    "type": "function",
+    "cat": "Content",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/content_ampscript_functions\/#ContentAreaByName"
+  },
+  "CreateMscrmRecord": {
+    "desc": [
+      "Creates a single Dynamics CRM record in the target entity. Returns the GUID of the created record."
+    ],
+    "args": [
+      "S1             The name of the Dynamics CRM entity for the record to create",
+      "S2             The number of Name\/Value pairs of fields to populate on the created record",
+      "S3a, S3b    Name\/Value pairs of attributes to populate on the created record",
+      "%%[",
+      "\/* Sample Code - this creates a new Contact record *\/",
+      "var @contact_guid",
+      "set @contact_guid = createmscrmrecord('contact', 3, 'firstname', 'bob', 'lastname', 'testcontact', 'emailaddress1', 'bob@example.com')",
+      "]%%",
+      "<p>GUID of new Contact:<\/p><br>",
+      "%%=v(@contact_guid)=%%"
+    ],
+    "exps": [
+      
+    ],
+    "def": "CreateMscrmRecord(S1,S2,S3a,S3b)",
+    "type": "function",
+    "cat": "For Use With Microsoft Dynamics Crm",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026ampscript_functions_for_use_with_microsoft_dynamics_crm\/#CreateMscrmRecord"
+  },
+  "CreateObject": {
+    "desc": [
+      "Returns a new ExactTarget web service API object."
+    ],
+    "args": [
+      "S1    The API Object receiving the new item in text form"
+    ],
+    "exps": [
+      "SET @subscriber = CreateObject(\"Subscriber\")",
+      "Creates a new Subscriber object for the web service API.",
+      "An object created with CreateObject() should only be used for one particular API call. So, if a Subscriber object is created and then updated via InvokeUpdate, it cannot be passed to a Triggered Send."
+    ],
+    "def": "CreateObject(S1)",
+    "type": "function",
+    "cat": "Api",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/api_ampscript_functions\/#CreateObject"
+  },
+  "CreateSalesforceObject": {
+    "desc": [
+      "Creates a record in your integrated Salesforce account and returns the ID of the record created. This function works only if your account is integrated with a Salesforce account."
+    ],
+    "args": [
+      "S1    The type of object to create a record in. For example, Lead or CustomObject__c",
+      "I1    The number of fields you are specifying in the record to add.",
+      "S2a.Sna    The name of the field (from Salesforce) that you are specifying.",
+      "S2b.Snb    The value of the field."
+    ],
+    "exps": [
+      "%%[ var @id",
+      "set @id=CreateSalesforceObject(\"lead\", 2, \"FirstName\", \"Chris\", \"LastName\", \"Cruz\")",
+      "]%%",
+      "The system creates a lead in the integrated Salesforce account where the FirstName field contains Chris and the LastName field contains Cruz."
+    ],
+    "def": "CreateSalesforceObject(S1,I1,S2a,S2b,...Sna,Snb)",
+    "type": "function",
+    "cat": "For Use With Salesforcecom",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026ide\/ampscript_functions_for_use_with_salesforcecom\/#CreateSalesforceObject"
+  },
+  "DateAdd": {
+    "desc": [
+      "Returns the sum of a date and an integer, along with a time stamp."
+    ],
+    "args": [
+      "D1    Date to add",
+      "I1    Integer to add",
+      "S1    Unit of time of the integer. Valid values include Y, M, D, H, and MI."
+    ],
+    "exps": [
+      "%%=DateAdd(@today, \"1\",\"D\")=%%",
+      "The system returns tomorrow's date, along with a time stamp."
+    ],
+    "def": "DateAdd(D1, I1, S1)",
+    "type": "function",
+    "cat": "Datetime",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/datetime_ampscript_functions\/#DateAdd"
+  },
+  "DateDiff": {
+    "desc": [
+      "Returns the difference between two dates."
+    ],
+    "args": [
+      "D1    The date from which to subtract D2",
+      "D2    Date to subtract from D1",
+      "S1    Unit of time of the difference. Valid values include Y, M, D, H, or MI"
+    ],
+    "exps": [
+      "%%=DateDiff(@tomorrow,@today, \"D\")=%%",
+      "System returns:",
+      "-1"
+    ],
+    "def": "DateDiff(D1, D2, S1)",
+    "type": "function",
+    "cat": "Datetime",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/datetime_ampscript_functions\/#DateDiff"
+  },
+  "DateParse": {
+    "desc": [
+      "Returns a DateTime object from a date string."
+    ],
+    "args": [
+      "S1    The date string from which to derive the DateTime object",
+      "B1    (Optional) Determines whether the DateTime object is returned as UTC"
+    ],
+    "exps": [
+      "DateParse(\"2009\/10\/17 02:30PM\")",
+      "System returns a local time of 2:30pm.",
+      "DateParse(\"2009\/10\/17 2:30PM-4:00\",1)",
+      "System returns 6:30pm as the UTC time based off of the local time value."
+    ],
+    "def": "DateParse(S1,B1)",
+    "type": "function",
+    "cat": "Datetime",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/datetime_ampscript_functions\/#DateParse"
+  },
+  "DatePart": {
+    "desc": [
+      "Returns a specified part of a date."
+    ],
+    "args": [
+      "D1    Date from which a specified part is retrieved.",
+      "S1    The part of the date to retrieve. Valid values include year (Y), month (M), monthname, day (D), hour (H), and minute (MI)."
+    ],
+    "exps": [
+      "%%=Datepart(\"5\/1\/2008\",\"year\")=%%",
+      "System returns:",
+      "2008"
+    ],
+    "def": "DatePart(D1, S1)",
+    "type": "function",
+    "cat": "Datetime",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/datetime_ampscript_functions\/#DatePart"
+  },
+  "DecryptSymmetric": {
+    "desc": [
+      "Decrypts encrypted data using the supplied algorithm and encryption values. You can supply either a value or a valid external key for the password, initialization vector, and Salt. You can also use the external keys if you have previously created keys in the Key Management section of the user interface. Otherwise, the function generates a password using the password parameter or stored value, the Salt parameter or stored value, and the IV parameter or stored value. If you do not pass or reference an initialization vector, the function uses the password parameter or stored value as the initialization vector.",
+      "This function treats Salt and IV values (either directly provided or looked up by key) as hex strings, with each pair of characters repesenting a single byte in the larger strings. Do not attempt to use these values as a cipher string, as you cannot successfully decrypt those strings use this function."
+    ],
+    "args": [
+      "S1    Encrypted data passed to the function",
+      "S2    Algorithm used to encrypt the data:",
+      "aes - AES algorithm",
+      "des - DES algorithm",
+      "tripledes - TripleDES algorithm",
+      "Mode (Optional, for use with DES and TripleDES only):",
+      "cbc (default)",
+      "ecb",
+      "ofb",
+      "cfb",
+      "cts",
+      "Padding (Optional, for use with DES and TripleDES only):",
+      "none",
+      "pkcs7 (default)",
+      "zeros",
+      "ansix923",
+      "iso10126",
+      "S3    Password external key",
+      "S4    Password",
+      "S5    Salt external key",
+      "S6    Salt",
+      "S7    Initialization vector external key",
+      "S8    Initialization vector"
+    ],
+    "exps": [
+      "The example below sets the @clearData variable to the value of the @endData once the function decrypts that data. This example uses provided values for the password, salt, and IV, and it sets any external key values to the undeclared variable @null. Note that the Salt and IV values provided in the example below represent hex string values - the Salt value includes 8 bytes of information, and the IV value provides 16 bytes.",
+      "SET @clearData=DecryptSymmetric(@encData, \"AES\", @null, \"aardvark\", @null, \"0000000000000000\", @null, \"00000000000000000000000000000000\")",
+      "The example below uses external keys instead of provided values:",
+      "SET @clearData=DecryptSymmetric(@encData, \"AES\", @passwordExternalKey, @null, @saltExternalKey, @null, @IVExternalKey, @null)",
+      "SET @clearData=DecryptSymmetric(@encData, \"AES\", \"passwordExternalKey\", @null, \"saltExternalKey\", @null, \"IVExternalKey\", @null)"
+    ],
+    "def": "DecryptSymmetric(S1, S2, S3, S4, S5, S6, S7, S8)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#DecryptSymmetric"
+  },
+  "DeleteData": {
+    "desc": [
+      "Deletes rows in a data extension with column values specified in name value pairs. The number of rows affected is returned. You can also use this function with SMS data."
+    ],
+    "args": [
+      "S1    Data extension from which to delete the specified row",
+      "S2    Name of the column to use to identify the rows to delete.",
+      "S3    Value to use to identify the rows to delete."
+    ],
+    "exps": [
+      "DeleteData(\"SendDE\", \"_SubscriberKey\",\"12345\")",
+      "The system deletes rows in the SendDE data extension whose _SubscriberKey column contains the value 12345 and returns the number of rows that were deleted."
+    ],
+    "def": "DeleteData(S1, S2, S3)",
+    "type": "function",
+    "cat": "Microsite And Landing Page",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026pt_syntax_guide\/microsite_and_landing_page_ampscript_functions\/#DeleteData"
+  },
+  "DeleteDE": {
+    "desc": [
+      "Deletes rows in a data extension with column values specified in name value pairs. No value is returned. This function is for use with email messages at send time only."
+    ],
+    "args": [
+      "S1    The name of the data extension from which to delete the specified row",
+      "S2    Name of the column to use to identify the rows to delete.",
+      "S3    Value to use to identify the rows to delete."
+    ],
+    "exps": [
+      "DeleteDE(\"SendDE\", \"_SubscriberKey\",\"12345\")"
+    ],
+    "def": "DeleteDE(S1, S2, S3)",
+    "type": "function",
+    "cat": "Data Extension",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/data_extension_ampscript_functions\/#DeleteDE"
+  },
+  "DescribeMscrmEntities": {
+    "desc": [
+      "Returns the logical name and display name of all Microsoft Dynamics CRM entities"
+    ],
+    "args": [
+      
+    ],
+    "exps": [
+      "%%[",
+      "\/* Sample code to get a list of all entities in a Dynamics CRM account to a record set *\/",
+      "var @entities_rs",
+      "set @entities_rs = describemscrmentities()",
+      "]%%",
+      "<p> Here is a list of CRM Entities <\/p>",
+      "%%[",
+      "var @entity_name, @entity_displayname, @counter",
+      "for @counter = 1 to rowcount(@entities_rs) do",
+      "set @entity_name = field(row(@entities_rs,@counter), 'Name')",
+      "set @entity_displayname = field(row(@entities_rs,@counter), 'DisplayName')",
+      "]%%",
+      "Entity Name: &nbsp; &nbsp; %%=v(@entity_name)=%% <br>",
+      "Entity Display Name: &nbsp; &nbsp; %%=v(@entity_displayname)=%% <br> <br><br>",
+      "%%[ next @counter ]%%"
+    ],
+    "def": "DescribeMscrmEntities()",
+    "type": "function",
+    "cat": "For Use With Microsoft Dynamics Crm",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026cript_functions_for_use_with_microsoft_dynamics_crm\/#DescribeMscrmEntities"
+  },
+  "DescribeMscrmEntityAttributes": {
+    "desc": [
+      "Returns the logical name, display name, and type of the Dynamics CRM entity. If the attribute is Boolean, status, a picklist, or a state, the function returns a comma-separated list of option and display values."
+    ],
+    "args": [
+      "S1    The Dynamics CRM entity from which to retrieve attributes",
+      "%%[",
+      "var @fields_rs",
+      "set @fields_rs = describemscrmentityattributes('lead')",
+      "]%%",
+      "<p> Here is a list of Fields in the Lead Entity <\/p>",
+      "%%[",
+      "var @field_name, @field_displayname, @counter, @field_type, @field_required, @field_options",
+      "for @counter = 1 to rowcount(@fields_rs) do",
+      "set @field_name = field(row(@fields_rs,@counter), 'Name')",
+      "set @field_displayname = field(row(@fields_rs,@counter), 'DisplayName')",
+      "set @field_type = field(row(@fields_rs,@counter), 'Type')",
+      "set @field_required = field(row(@fields_rs,@counter), 'Required')",
+      "set @field_options = field(row(@fields_rs,@counter), 'Options')",
+      "]%%",
+      "Field Name: &nbsp; &nbsp; %%=v(@field_name)=%% <br>",
+      "Field Display Name: &nbsp; &nbsp; %%=v(@field_displayname)=%% <br>",
+      "Field Type: &nbsp; &nbsp; %%=v(@field_type)=%% <br>",
+      "Field Required?: &nbsp; &nbsp; %%=v(@field_required)=%% <br>",
+      "Field Options: &nbsp; &nbsp; %%=v(@field_options)=%% <br> <br><br>",
+      "%%[ next @counter ]%%"
+    ],
+    "exps": [
+      
+    ],
+    "def": "DescribeMscrmEntityAttributes(S1)",
+    "type": "function",
+    "cat": "For Use With Microsoft Dynamics Crm",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026nctions_for_use_with_microsoft_dynamics_crm\/#DescribeMscrmEntityAttributes"
+  },
+  "Divide": {
+    "desc": [
+      "Returns the result (quotient) of dividing the first argument by the second argument."
+    ],
+    "args": [
+      "N1    Value to be divided-the dividend.",
+      "N2    Value to divide by-the divisor."
+    ],
+    "exps": [
+      "Given @abc=100 and @def=5",
+      "%%=Divide(@abc,@def)=%%",
+      "The system returns:",
+      "20"
+    ],
+    "def": "Divide(N1, N2)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Divide"
+  },
+  "Domain": {
+    "desc": [
+      "Returns the domain portion of an email address."
+    ],
+    "args": [
+      "S1    Email address"
+    ],
+    "exps": [
+      "%%=Domain(sales@example.com)=%%",
+      "The system returns:",
+      "example.com"
+    ],
+    "def": "Domain(S1)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Domain"
+  },
+  "Empty": {
+    "desc": [
+      "Returns True if the value is the empty string or NULL."
+    ],
+    "args": [
+      "V1    Variable to evaluate"
+    ],
+    "exps": [
+      "Given @abc=27",
+      "%%=Empty(@abc)=%%",
+      "The system returns:",
+      "False"
+    ],
+    "def": "Empty (V1)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Empty"
+  },
+  "EncryptSymmetric": {
+    "desc": [
+      "Encrypts plain text data using the supplied algorithm and encryption values. You can supply either a value or a valid external key for the password, initialization vector, and Salt. You can also use the external keys if you have previously created keys in the Key Management section of the user interface. Otherwise, the function generates a password using the password parameter or stored value, the Salt parameter or stored value, and the IV parameter or stored value. If you do not pass or reference an initialization vector, the function uses the password parameter or stored value as the initialization vector. All output provided by this function uses base 64 encoding.",
+      "This function treats Salt and IV values (either directly provided or looked up by key) as hex strings, with each pair of characters repesenting a single byte in the larger strings. Do not attempt to use these values as a cipher string, as you cannot successfully encrypt those strings use this function."
+    ],
+    "args": [
+      "S1    Plain text data passed to the function",
+      "S2    Algorithm used to encrypt the data:",
+      "aes - AES algorithm",
+      "des - DES algorithm",
+      "tripledes - TripleDES algorithm",
+      "Mode (Optional, for use with DES and TripleDES only):",
+      "cbc (default)",
+      "ecb",
+      "ofb",
+      "cfb",
+      "cts",
+      "Padding (Optional, for use with DES and TripleDES only):",
+      "none",
+      "pkcs7 (default)",
+      "zeros",
+      "ansix923",
+      "iso10126",
+      "S3    Password external key",
+      "S4    Password",
+      "S5    Salt external key",
+      "S6    Salt",
+      "S7    Initialization vector external key",
+      "S8  Initialization vector"
+    ],
+    "exps": [
+      "The example below sets the @encData variable to the encrypted value of the plain text supplied in the function (in this case, the word Example). TThis example uses provided values for the password, salt, and IV, and it sets any external key values to the undeclared variable @null. Note that the Salt and IV values provided in the example below represent hex string values - the Salt value includes 8 bytes of information, and the IV value provides 16 bytes.",
+      "SET @encData=EncryptSymmetric(\"Example\", \"AES\", @null, \"password\", @null, \"0000000000000000\", @null, \"00000000000000000000000000000000\")",
+      "The examples below use external keys instead of provided values.",
+      "SET @encData=EncryptSymmetric(\"Example\", \"AES\", @PasswordExternalKey, @null, @saltExternalKey, @null, @IVExternalKey, @null)",
+      "SET @encData=EncryptSymmetric(\"Example\", \"AES\", \"PasswordExternalKey\", @null, \"saltExternalKey\", @null, \"IVExternalKey\", @null)",
+      "This example uses the ebc mode of the DES algorithm:",
+      "SET @encData=EncryptSymmetric(\"Example\", \"des;mode=ecb;padding=zeros\", @null, \"0x7FEBCBCBCB9BCB01\", @null, @null, @null, @null)"
+    ],
+    "def": "EncryptSymmetric(S1, S2, S3, S4, S5, S6, S7, S8, S9, S10)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#EncryptSymmetric"
+  },
+  "EndImpressionRegion": {
+    "desc": [
+      "Identifies the end of a region to be tracked by impression tracking."
+    ],
+    "args": [
+      "B1    If the optional Boolean is set to true, all impression areas are closed. If an impression region is not explicitly closed, it will be implicitly closed at the end of the message being built."
+    ],
+    "exps": [
+      "%%=EndImpressionRegion()=%%"
+    ],
+    "def": "EndImpressionRegion(B1)",
+    "type": "function",
+    "cat": "Content",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/content_ampscript_functions\/#EndImpressionRegion"
+  },
+  "Enterprise_and_Enterprise_2.0_Accounts": {
+    "desc": [
+      "When working with a data extension in the top level of an Enterprise or Enterprise 2.0 account or with a shared data extension in an Enterprise 2.0 account, add the prefix ENT. to the data extension."
+    ],
+    "args": [
+      
+    ],
+    "exps": [
+      
+    ],
+    "def": "Enterprise and Enterprise 2.0 Accounts",
+    "type": "function",
+    "cat": "Data Extension",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026data_extension_ampscript_functions\/#Enterprise_and_Enterprise_2.0_Accounts"
+  },
+  "ExecuteFilter": {
+    "desc": [
+      "Executes a predefined data filter and returns a rowset containing the results.The data source for the data filter must be a data extension. If a parameterized data filter is used, you must provide name and value pairs for all parameters defined within the data filter."
+    ],
+    "args": [
+      "S1    The external key of the data filter to be executed",
+      "S2    The name of a parameter defined in the data filter",
+      "S3    The value to be used for a parameter defined in the data filter"
+    ],
+    "exps": [
+      "ExecuteFilter(\"ExampleDataFilter\",\"IsActive\",\"TRUE\",\"FirstName\",\"John\")",
+      "The system returns all applicable rowsets with a value of TRUE for IsActive and a value of John for FirstName."
+    ],
+    "def": "ExecuteFilter(S1,S2,S3...)",
+    "type": "function",
+    "cat": "Data Extension",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/data_extension_ampscript_functions\/#ExecuteFilter"
+  },
+  "ExecuteFilterOrderedRows": {
+    "desc": [
+      "Executes a predefined data filter and returns a rowset containing the results.The data source for the data filter must be a data extension. If a parameterized data filter is used, you must provide name and value pairs for all parameters defined within the data filter. This function also allows you to control the sort order and maximum number of rows in the resulting rowset."
+    ],
+    "args": [
+      "S1    The external key of the data filter to be executed",
+      "N1    The maximum number of rows to be returned; a value of 0 returns all rows",
+      "S2    The name of the column by which the resulting rowset should be sorted",
+      "S3    The name of a parameter defined in the data filter",
+      "S4    The value to be used for a parameter defined in the data filter"
+    ],
+    "exps": [
+      "ExecuteFilter(\"ExampleDataFilter\",5,\"IsActive\",\"IsActive\",\"TRUE\",\"FirstName\",\"John\")",
+      "The system returns all applicable rowsets with a value of TRUE for IsActive and a value of John for FirstName. The function returns only five rows, and those rows use the IsActive column to sort the resulting rowset."
+    ],
+    "def": "ExecuteFilterOrderedRows(S1,N1,S2,S3,S4...)",
+    "type": "function",
+    "cat": "Data Extension",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026_syntax_guide\/data_extension_ampscript_functions\/#ExecuteFilterOrderedRows"
+  },
+  "Field": {
+    "desc": [
+      "Returns the specified field in the specified row or property value from an API object."
+    ],
+    "args": [
+      "S1    Row from which to return the field, or object from which to return the attribute",
+      "S2    Name of the field or attribute to return"
+    ],
+    "exps": [
+      "%%=Field(@row, \"City\")=%%",
+      "The system returns value of the City field in the row specified in the @row variable.",
+      "%%=Field(@subscriber, \"EmailAddress\")=%%",
+      "The system returns the EmailAddress value from the @subscriber WSDL object."
+    ],
+    "def": "Field(S1,S2)",
+    "type": "function",
+    "cat": "Api",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/api_ampscript_functions\/#Field"
+  },
+  "Format": {
+    "desc": [
+      "Formats the value according to the string you specify."
+    ],
+    "args": [
+      "V1    Variable to format",
+      "S1    A C# compatible format string. Valid values include:",
+      "MM\/dd\/yyyy",
+      "Cn (currency format where n represents the number of decimal places)",
+      "There are multiple possibilities for displaying the date using this function. For a more complete list, see the Microsoft help regarding the DateTimeFormatInfo Class.",
+      "For more information on formatting numeric strings, see the Microsoft help regarding the NumberFormatInfoClass.",
+      "Example 1",
+      "%%=Format(Now(),\"MM\/dd\/yyyy\")=%%",
+      "System returns today's date in MM\/dd\/yyyy format.",
+      "Example 2",
+      "%%=Format(@currency_variable,\"$#,#.00;-$#,#.00\")=%%",
+      "FormatCurrency(V1,S1,N1,S2)",
+      "Formats a specified string as a currency value.",
+      "V1 - Value to receive the specified formatting",
+      "S1 - Culture code used to indicate the correct currency unit",
+      "N1 - (Optional) The number of decimal places to include in the formatted value",
+      "S2 - (Optional) The currency symbol to use with the value. This value overrides the value specified by the culture code in S1.",
+      "This function rounds the numbers up if the specified format uses fewer decimal points than the value itself and the remaining numbers are 5 or over. The function rounds the numbers down if the specified format uses fewer decimal points than the value itself and the remaining numbers total less than 5.",
+      "Example 1",
+      "%%=FormatCurrency(1234.567,\"en-US\")=%%",
+      "System returns:",
+      "$1234.57",
+      "Example 2",
+      "%%=FormatCurrency(-12300099.45678,\"fr_FR\",3,\"*$*\")=%%",
+      "System returns:",
+      "$-12 300 099,457 *$*",
+      "FormatDate(V1,S1,S2,S3)",
+      "Formats a specified string as a date value.",
+      "V1 - Value to receive the specified formatting",
+      "S1 - (Optional) Date format string used to format the specified value",
+      "S2 - (Optional) Time format string used the formation the specified value",
+      "S3 - (Optional) Culture code used to indicate the correct date format",
+      "This function rounds the numbers up if the specified format uses fewer decimal points than the value itself.",
+      "V1 - Value to receive the specified formatting.",
+      "P1 - Valid format type value:",
+      "C - Currency",
+      "D - Decimal",
+      "E - Exponential",
+      "F - Fixed point",
+      "G - General",
+      "N - Number",
+      "P - Percent",
+      "R - Round-trip",
+      "X - Hexadecimal",
+      "You can optionally follow this code with a number to indicate the precision of the number. For example, a currency value with a precision of 2 uses the parameter C2.",
+      "S1 - (Optional) Culture code used to indicate the correct date format",
+      "This function rounds the numbers up if the specified format uses fewer decimal points than the value itself and the remaining numbers are 5 or over. The function rounds the numbers down if the specified format uses fewer decimal points than the value itself and the remaining numbers total less than 5.",
+      "Example 1",
+      "%%=FormatNumber(1234.567,\"C2\",\"en-US\")=%%",
+      "System returns:",
+      "1234.57",
+      "Example 2",
+      "%%=FormatNumber(-12300099.45678,\"N\",\"fr-FR\")=%%",
+      "System returns:",
+      "-12 300 099,4568'"
+    ],
+    "exps": [
+      "%%=FormatDate(2012-10-05 03:21:34.567890, \"MMM DD, YYYY\", \"HH:MM:SS.MMM\", \"en-US\")=%%",
+      "System returns:",
+      "Dec 10, 2012 03:21:34.567890",
+      "FormatNumber(V1,P1,S1)",
+      "Formats a number value as specified by the AMPscript arguments."
+    ],
+    "def": "Format (V1, S1)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Format"
+  },
+  "GetPortfolioItem": {
+    "desc": [
+      "Returns the text value of a Portfolio item."
+    ],
+    "args": [
+      "S1     External Key of the Portfolio item"
+    ],
+    "exps": [
+      "Given the Portfolio item of example.gif:",
+      "GetPortfolioItem(\"example.gif\")",
+      "The function returns the file."
+    ],
+    "def": "GetPortfolioItem(S1)",
+    "type": "function",
+    "cat": "Content",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/content_ampscript_functions\/#GetPortfolioItem"
+  },
+  "GetPublishedSocialContent": {
+    "desc": [
+      "Returns content to be shared on a social network as specified by the region ID. This function is for use only in landing pages or the Social Forward feature."
+    ],
+    "args": [
+      "S1    The region ID for the social content area"
+    ],
+    "exps": [
+      "For the function shown below:",
+      "GetPublishedSocialContent(\"SocialRegion1\")",
+      "System returns the content contained in SocialRegion1."
+    ],
+    "def": "GetPublishedSocialContent(S1)",
+    "type": "function",
+    "cat": "Social",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026pscript_syntax_guide\/social_ampscript_functions\/#GetPublishedSocialContent"
+  },
+  "GetSocialPublishURL": {
+    "desc": [
+      "Retrieves the URL of a social network from a lookup table and creates a link to that social network for use with content to be shared from an email. The optional pairs of parameters refers to additional information like ShareThis ID numbers and logins. For use with the Social Forward feature of the ExactTarget application."
+    ],
+    "args": [
+      "N1    The number of the social network on the lookup table",
+      "S1    The name of the content area to be shared to the social network",
+      "S2    The name of the optional parameter",
+      "S3    The value of the optional parameter"
+    ],
+    "exps": [
+      "In the pasted HTML code below, the GetSocialPublishURL() function creates a link to Facebook in order to share the specified content area on that network.",
+      "<!-- RegionStart[ name:\"Shared content region 1\",",
+      "title:\"First shared email content\",",
+      "description:\"This is an example of shared content\",",
+      "csskey:\"portfolio css 1\"] -->",
+      "<tablewidth=\"100%\"bgcolor=\"#FFFFFF\"border=\"0\"bordercolor=\"\"cellpadding=\"5\"cellspacing=\"0\">",
+      "<tr>",
+      "<tdstyle=\"font-family:Arial; font-size:13px\">",
+      "<imgsrc=\"http:\/\/example.com\/images\/logo.jpg\" title=\"logo\"align=\"left\"border=\"0\"\/>",
+      "<p id=\"text-placeholder\"style=\"margin-top: 0px; margin-bottom: 0px;\">This is an example of a shared content area!&nbsp; Please feel free to pass on this information!<br\/>",
+      "<br\/><\/p>",
+      "<!-- Creates a link to share this content with facebook -->",
+      "<a href=\"%%=GetSocialPublishURL('1','Shared content region 1')=%%\"",
+      "alias=\"Social Forward to Facebook\"",
+      "title=\"Publish to Facebook\">",
+      "<img src=\"http:\/\/images.dev2.et.local\/lib\/ffcf14\/m\/1\/social_default_facebook_icon.jpg\" alt=\"Facebook\" title=\"Facebook\" border=\"0\"><\/a>",
+      "<\/td>",
+      "<\/tr>",
+      "<\/table>",
+      "<!-- RegionEnd[ name:\"Shared content region 1\"] -->"
+    ],
+    "def": "GetSocialPublishURL(N1,S1,S2,S3...Sn)",
+    "type": "function",
+    "cat": "Social",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/social_ampscript_functions\/#GetSocialPublishURL"
+  },
+  "GetSocialPublishURLByName": {
+    "desc": [
+      "Returns the URL to the publish content page, including a site name, country code, a region ID, and optional pairs of parameter information, such as ShareThis ID information. For use with the Social Forward feature of the ExactTarget application."
+    ],
+    "args": [
+      "S1    The name of the social network to which to share the information",
+      "S2    The applicable country code for the social network, as defined by the ISO",
+      "S3    The region ID of the content being shared to the social network",
+      "S4    The name of the optional parameter",
+      "S5    The value of the optional parameter"
+    ],
+    "exps": [
+      "<!-- RegionStart[ name:\"Shared content region 1\",",
+      "title:\"First shared email content\",",
+      "description:\"This is an example of shared content\",",
+      "csskey:\"portfolio css 1\"] -->",
+      "<tablewidth=\"100%\"bgcolor=\"#FFFFFF\"border=\"0\"bordercolor=\"\"cellpadding=\"5\"cellspacing=\"0\">",
+      "<tr>",
+      "<tdstyle=\"font-family:Arial; font-size:13px\">",
+      "<imgsrc=\"http:\/\/example.com\/images\/logo.jpg\" title=\"logo\"align=\"left\"border=\"0\"\/>",
+      "<p id=\"text-placeholder\"style=\"margin-top: 0px; margin-bottom: 0px;\">This is an example of a shared content area!&nbsp; Please feel free to pass on this information!<br\/>",
+      "<br\/><\/p>",
+      "<!-- Creates a link to share this content with facebook -->",
+      "<a href=\"%%=GetSocialPublishURLByName('Facebook','US','Shared content region 1')=%%\" alias=\"Social Forward to Facebook\" title=\"Publish to Facebook\">",
+      "<img src=\"http:\/\/images.dev2.et.local\/lib\/ffcf14\/m\/1\/social_default_facebook_icon.jpg\" alt=\"Facebook\" title=\"Facebook\" border=\"0\"><\/a>",
+      "<\/td>",
+      "<\/tr>",
+      "<\/table>",
+      "<!-- RegionEnd[ name:\"Shared content region 1\"] -->"
+    ],
+    "def": "GetSocialPublishURLByName(S1,S2,S3,S4,S5...Sn)",
+    "type": "function",
+    "cat": "Social",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026pscript_syntax_guide\/social_ampscript_functions\/#GetSocialPublishURLByName"
+  },
+  "GUID": {
+    "desc": [
+      "Returns a new GUID as a string value."
+    ],
+    "args": [
+      
+    ],
+    "exps": [
+      "var @myGUID",
+      "set @myGUID = GUID()",
+      "The system created the @myGUID variable and sets the value of that variable with the string generated by GUID()."
+    ],
+    "def": "GUID()",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#GUID"
+  },
+  "HTTPGet": {
+    "desc": [
+      "Returns the content from a specified URL. This function only works with HTTP on port 80 and HTTPS on port 443. Non-standard port assignments cause this function to fail. ExactTarget honors any character set returned in the HTTP headers via Content-Type. For example, you can use a UTF-8 encoded HTML file with Content-Type: text\/html; charset=utf-8 included in the header. If the encoding is not specified in the header, the application assumes all returned data will be in the character set WindowsCodePage 1252. You can change this default by contacting Global Support."
+    ],
+    "args": [
+      "S1    The URL from which to return content",
+      "B1    (Optional) Defines whether the process continues on error. Defaults to false. A value of true ignores errors in process.",
+      "N1   (Optional) Defines whether the function allows empty content. This function defaults to 0.",
+      "A value of 0 allows for empty content",
+      "A value of 1 returns an error",
+      "A value of 2 skips the subscriber.",
+      "S2   (Optional) Output of function status.",
+      "A value of 0 indicates status is OK",
+      "A value of -1 indicates a missing URL",
+      "A value of -2 indicates an HTTP request error",
+      "A value of -3 indicates empty content; the function completed successfully, but no content was returned"
+    ],
+    "exps": [
+      "HTTPGet(\"http:\/\/www.example.com\")",
+      "System returns the content of http:\/\/www.example.com.",
+      "HTTPGet(\"http:\/\/www.example.com\",false,0,@CallStatus)",
+      "System returns the content of http:\/\/www.example.com. The function stops if it encounters an error, and it allows empty content. The status of the function is returned to the declared variable @CallStatus."
+    ],
+    "def": "HTTPGet(S1,B1,N1,S2)",
+    "type": "function",
+    "cat": "Http",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/http_ampscript_functions\/#HTTPGet"
+  },
+  "HTTPRequestHeader": {
+    "desc": [
+      "Retrieves the specified header from an HTTP request. Can only be used in landing pages."
+    ],
+    "args": [
+      "S1    The header to be retrieved from an HTTP request"
+    ],
+    "exps": [
+      "%%=HTTPRequestHeader(\"Referer\")=%%",
+      "System returns value of the Referer header from the HTTP request."
+    ],
+    "def": "HTTPRequestHeader(S1)",
+    "type": "function",
+    "cat": "Http",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/http_ampscript_functions\/#HTTPRequestHeader"
+  },
+  "IIf": {
+    "desc": [
+      "Returns the second parameter if the first parameter evaluates True. Returns the third parameter if the first parameter evaluates False."
+    ],
+    "args": [
+      "E1    Expression to evaluate",
+      "S1    Value to return if the expression evaluates TRUE",
+      "S2    Value to return if the expression evaluates FALSE"
+    ],
+    "exps": [
+      "%%=IIF(EMPTY(@VAR),\"123\",@VAR)=%%",
+      "The system returns the value 123 if the @VAR variable is empty and returns the value of @VAR if it exists."
+    ],
+    "def": "IIf(E1,S1,S2)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#IIf"
+  },
+  "Image": {
+    "desc": [
+      "Returns an img tag with the src attribute containing the path to an image from your portfolio. You identify the image to include with the External Key value. The img tag includes the width and height you chose when you imported the image. If the value of S1 does not link to a valid image, you can include another image value for S2 as a default option."
+    ],
+    "args": [
+      "S1    External Key value of the image in your portfolio",
+      "S2    (Optional) External Key value of a default image to use if S1 is not found"
+    ],
+    "exps": [
+      "%%=Image(\"CorpLogo\",\"DefaultImage\")=%%",
+      "System returns:",
+      "<img src=\"http:\/\/images.example.com\/logo.gif\" width=\"35\" height=\"20\">",
+      "If, for some reason, the CorpLogo image could not be retrieved, system returns:",
+      "<img src=\"http:\/\/images.example.com\/default.gif\" width=\"35\" height=\"20\">"
+    ],
+    "def": "Image(S1,S2)",
+    "type": "function",
+    "cat": "Content",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/content_ampscript_functions\/#Image"
+  },
+  "IndexOf": {
+    "desc": [
+      "Returns character position where string occurs in the variable. Index numbering begins with 1."
+    ],
+    "args": [
+      "V1    Variable to analyze",
+      "S1    Value whose character position to return"
+    ],
+    "exps": [
+      "Given @abc=You will love our product.",
+      "%%=IndexOf(@abc,\"love\")=%%",
+      "System returns:",
+      "10",
+      "For the code below, the system returns 1:",
+      "%%[",
+      "var @abc",
+      "Set @abc = \"ab\"",
+      "var @index",
+      "Set @index = IndexOf(@abc,\"a\")",
+      "Output(v(@index))",
+      "]%%"
+    ],
+    "def": "IndexOf(V1, S1)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#IndexOf"
+  },
+  "InsertData": {
+    "desc": [
+      "Inserts a row in a data extension (S1) with the column values listed in name value pairs (S2, S3.). The number of rows affected is returned. You can also use this function with SMS data."
+    ],
+    "args": [
+      "S1    Data extension from which to insert the specified row",
+      "S2, S3    Column name(s) and column value(s) to use to build the insert clause"
+    ],
+    "exps": [
+      "InsertData(\"SomeDE\",\"FirstName\",FirstName, \"LastName\",LastName, \"CreatedDate\",NOW())"
+    ],
+    "def": "InsertData(S1, S2, S3)",
+    "type": "function",
+    "cat": "Microsite And Landing Page",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026pt_syntax_guide\/microsite_and_landing_page_ampscript_functions\/#InsertData"
+  },
+  "InsertDE": {
+    "desc": [
+      "Inserts a row in a data extension (S1) with the column values listed in name value pairs (S2, S3.). No value is returned. This function applies to email messages at send time only."
+    ],
+    "args": [
+      "S1    The name of the data extension from which to insert the specified row",
+      "S2, S3    Column name(s) and column value(s) to use to build the insert clause"
+    ],
+    "exps": [
+      "InsertDE(\"SomeDE\",\"FirstName\",FirstName, \"LastName\",LastName, \"CreatedDate\",NOW())"
+    ],
+    "def": "InsertDE(S1, S2, S3)",
+    "type": "function",
+    "cat": "Data Extension",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/data_extension_ampscript_functions\/#InsertDE"
+  },
+  "InvokeCreate": {
+    "desc": [
+      "Invokes the ExactTarget web service API Create method on an API object. Returns the API Status Code."
+    ],
+    "args": [
+      "O1    The API object to be created",
+      "S1    Output parameter for the API status message",
+      "N1    Output parameter for the API error code",
+      "O2    The CreateOptions API call"
+    ],
+    "exps": [
+      "Given the example below:",
+      "%%[",
+      "var @emailaddr",
+      "SET @emailaddr = \"help@example.com\"",
+      "SET @ts = CreateObject(\"TriggeredSend\")",
+      "SET @tsDef = CreateObject(\"TriggeredSendDefinition\")",
+      "SET @ts_subkey = @emailaddr",
+      "SetObjectProperty(@tsDef, \"CustomerKey\", \"VolConfirm\")",
+      "SetObjectProperty(@ts, \"TriggeredSendDefinition\", @tsDef)",
+      "SET @ts_sub = CreateObject(\"Subscriber\")",
+      "SetObjectProperty(@ts_sub, \"EmailAddress\", @emailaddr)",
+      "SetObjectProperty(@ts_sub, \"SubscriberKey\", @ts_subkey)",
+      "AddObjectArrayItem(@ts, \"Subscribers\", @ts_sub)",
+      "SET @ts_statusCode = InvokeCreate(@ts, @ts_statusMsg, @errorCode)",
+      "IF @ts_statusCode != \"OK\" THEN",
+      "RaiseError(@ts_statusMsg, 0, @ts_statusCode, @errorCode)",
+      "ENDIF",
+      "]%%",
+      "The AMPscript creates the TriggeredSend and TriggeredSendDefinition objects as @ts and @tsDef. It also assigns the correct properties to the objects and passes the object into the InvokeCreate call. The InvokeCreate call returns a status code and status message by which exception handling can be built. In this example, the AMPscript returns an error to the screen."
+    ],
+    "def": "InvokeCreate(O1,S1,N1,O2)",
+    "type": "function",
+    "cat": "Api",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/api_ampscript_functions\/#InvokeCreate"
+  },
+  "InvokeDelete": {
+    "desc": [
+      "Invokes the Delete method on an API object. Returns the API Status Code."
+    ],
+    "args": [
+      "O1    The API object to be deleted",
+      "S1    Output parameter for the API status message",
+      "N1    Output parameter for the API error code",
+      "O2    The DeleteOptions API call"
+    ],
+    "exps": [
+      
+    ],
+    "def": "InvokeDelete(O1,S1,N1,O2)",
+    "type": "function",
+    "cat": "Api",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/api_ampscript_functions\/#InvokeDelete"
+  },
+  "InvokeExecute": {
+    "desc": [
+      "Invokes the Execute method on an API object. Returns the API Status Code."
+    ],
+    "args": [
+      "P1    The API object to be executed",
+      "P2    The output parameter used to get the status (optional)",
+      "P3    The output parameter used to get the request ID (optional)"
+    ],
+    "exps": [
+      "Given the example below:",
+      "SET @lue = CreateObject(\"ExecuteRequest\")",
+      "SetObjectProperty(@lue,\"Name\",\"LogUnsubEvent\")",
+      "SET @lue_prop = CreateObject(\"APIProperty\")",
+      "SetObjectProperty(@lue_prop, \"Name\", \"SubscriberKey\")",
+      "SetObjectProperty(@lue_prop, \"Value\", @SubscriberID)",
+      "AddObjectArrayItem(@lue, \"Parameters\", @lue_prop)",
+      "SET @lue_prop = CreateObject(\"APIProperty\")",
+      "SetObjectProperty(@lue_prop, \"Name\", \"JobID\")",
+      "SetObjectProperty(@lue_prop, \"Value\", @JobID)",
+      "AddObjectArrayItem(@lue, \"Parameters\", @lue_prop)",
+      "SET @lue_prop = CreateObject(\"APIProperty\")",
+      "SetObjectProperty(@lue_prop, \"Name\", \"ListID\")",
+      "SetObjectProperty(@lue_prop, \"Value\", @ListID)",
+      "AddObjectArrayItem(@lue, \"Parameters\", @lue_prop)",
+      "SET @lue_prop = CreateObject(\"APIProperty\")",
+      "SetObjectProperty(@lue_prop, \"Name\", \"BatchID\")",
+      "SetObjectProperty(@lue_prop, \"Value\", @BatchID)",
+      "AddObjectArrayItem(@lue, \"Parameters\", @lue_prop)",
+      "SET @lue_prop = CreateObject(\"APIProperty\")",
+      "SetObjectProperty(@lue_prop, \"Name\", \"Reason\")",
+      "SetObjectProperty(@lue_prop, \"Value\", \"Custom Unsubscribe Page\")",
+      "AddObjectArrayItem(@lue, \"Parameters\", @lue_prop)",
+      "SET @lue_statusCode = InvokeExecute(@lue, @overallStatus, @requestId)",
+      "SET @Response = Row(@lue_statusCode, 1)",
+      "SET @Status = Field(@Response,\"StatusMessage\")",
+      "SET @Error = Field(@Response,\"ErrorCode\")",
+      "IF (@Error == \"12012\") OR (@Error == \"401\") OR (@Status == \"Event posted\") THEN",
+      "\/* Succeeded *\/",
+      "ELSE",
+      "\/* Failed *\/",
+      "ENDIF",
+      "The code sets up and executes a LogUnsubEvent and succeeds if the operation completes (or when the specified error codes indicate the subscriber was already unsubscribed)."
+    ],
+    "def": "InvokeExecute",
+    "type": "function",
+    "cat": "Api",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/api_ampscript_functions\/#InvokeExecute"
+  },
+  "InvokePerform": {
+    "desc": [
+      "Invokes the ExactTarget web service API Perform method on an API object.  Returns the API Status Code."
+    ],
+    "args": [
+      "O1    The API object to be performed",
+      "S1    The action to be performed - valid parameter values vary depending on object type",
+      "S2    Output parameter that gives the API status message"
+    ],
+    "exps": [
+      
+    ],
+    "def": "InvokePerform(O1,S1,S2)",
+    "type": "function",
+    "cat": "Api",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/api_ampscript_functions\/#InvokePerform"
+  },
+  "InvokeRetrieve": {
+    "desc": [
+      "Returns an array of API objects from a RetrieveRequest object."
+    ],
+    "args": [
+      "P1    The RetrieveRequest object from which you wish to return an array of API objects.",
+      "P2    (Optional) The OverallStatus parameter passes the Status of the retrieve call to a previously defined AMPscript variable.",
+      "P3    (Optional) The RequestID parameter passes the RequestID of the retrieve call to a previously defined AMPscript variable."
+    ],
+    "exps": [
+      
+    ],
+    "def": "InvokeRetrieve(P1,P2,P3)",
+    "type": "function",
+    "cat": "Api",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/api_ampscript_functions\/#InvokeRetrieve"
+  },
+  "InvokeUpdate": {
+    "desc": [
+      "Invokes the Update method on an API object."
+    ],
+    "args": [
+      "P1    Text object for the API object",
+      "P2    StatusMessage - optional text status message",
+      "P3    ErrorCode - optional numeric error code",
+      "P4    Options - optional options in text"
+    ],
+    "exps": [
+      
+    ],
+    "def": "InvokeUpdate(P1,P2,P3,P4)",
+    "type": "function",
+    "cat": "Api",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/api_ampscript_functions\/#InvokeUpdate"
+  },
+  "IsEmailAddress": {
+    "desc": [
+      "Returns a true or false result indicating whether the string value passed in is a valid email address. This function uses the same email validation logic as the rest of the application."
+    ],
+    "args": [
+      "S1    The email address to be validated"
+    ],
+    "exps": [
+      "If the email address joe@example.com is valid, then the function listed below will return a \"true\" value. Otherwise, the function below returns a \"false\" value.",
+      "IsEmailAddress(\"joe@example.com\")"
+    ],
+    "def": "IsEmailAddress(S1)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#IsEmailAddress"
+  },
+  "IsNull": {
+    "desc": [
+      "Returns a true value if the specified parameter is null."
+    ],
+    "args": [
+      "P1    Parameter to check for null value"
+    ],
+    "exps": [
+      "Given @Row is null",
+      "IsNull(@Row)",
+      "System returns:",
+      "true"
+    ],
+    "def": "IsNull(P1)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#IsNull"
+  },
+  "IsNullDefault": {
+    "desc": [
+      "Returns the test data (S1) if it is not null. If null, S2 is returned. Primarily used by Smart Capture forms to return a default value if a Smart Capture form value is not present or filled-in."
+    ],
+    "args": [
+      "S1    The value to return if S1 is not null",
+      "S2    The value to return if S1 is null"
+    ],
+    "exps": [
+      "IsNullDefault(RequestParameter(\"ExampleParameter\"), \"Null default value\")"
+    ],
+    "def": "IsNullDefault(S1, S2)",
+    "type": "function",
+    "cat": "Microsite And Landing Page",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026syntax_guide\/microsite_and_landing_page_ampscript_functions\/#IsNullDefault"
+  },
+  "IsPhoneNumber": {
+    "desc": [
+      "Returns a true or false result indicating whether the string value passed in is a valid phone number. This function uses the same phone number validation as the SMS components of the application.",
+      "Argument",
+      "P1    The phone number to be validated"
+    ],
+    "args": [
+      
+    ],
+    "exps": [
+      "If the phone number 555-555-5555 is valid, then the function listed below will return a \"true\" value. Otherwise, the function below returns a \"false\" value.",
+      "IsPhoneNumber(\"5555555555\")"
+    ],
+    "def": "IsPhoneNumber(P1)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#IsPhoneNumber"
+  },
+  "Length": {
+    "desc": [
+      "Returns the character length of the string you specify."
+    ],
+    "args": [
+      "V1    Variable whose characters to count"
+    ],
+    "exps": [
+      "Given @abc=Hello world!",
+      "%%=Length(@abc)=%%",
+      "System returns:",
+      "12"
+    ],
+    "def": "Length(V1)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Length"
+  },
+  "LiveContentMicrositeURL": {
+    "desc": [
+      "Provides a way to return a microsite URL by referencing a coupon name that is being hosted on a microsite."
+    ],
+    "args": [
+      "S1    Content type - at this time, the only valid value for this argument is coupon",
+      "S2    Name of the live content you are referencing"
+    ],
+    "exps": [
+      "%%=LiveContentMicrositeURL('coupon', 'MyCoupon')=%%",
+      "System returns:",
+      "A URL specific to the landing page on which the coupon is hosted."
+    ],
+    "def": "LiveContentMicrositeURL(S1, S2)",
+    "type": "function",
+    "cat": "Microsite And Landing Page",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026de\/microsite_and_landing_page_ampscript_functions\/#LiveContentMicrositeURL"
+  },
+  "LocalDateToSystemDate": {
+    "desc": [
+      "Converts a local datetime string or object to the system time."
+    ],
+    "args": [
+      "S1    The local time to convert"
+    ],
+    "exps": [
+      "%%[",
+      "VAR @currentSystemTime",
+      "SET @currentSystemTime = NOW()",
+      "]%%",
+      "Local Time For User:  %%=SystemDateToLocalDate(@currentSystemTime)=%% Converted Back to System Time %%=LocalDateToSystemDate(@currentSystemTime)=%%",
+      "The system returns the local time based off of the value contained in the @currentSystemTime variable, then converts it back to system time."
+    ],
+    "def": "LocalDateToSystemDate(S1)",
+    "type": "function",
+    "cat": "Datetime",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/datetime_ampscript_functions\/#LocalDateToSystemDate"
+  },
+  "LongSFID": {
+    "desc": [
+      "Returns the 18-character Salesforce ID from a shortened 15-character version.",
+      "Argument",
+      "S1    The 15-character Salesforce ID"
+    ],
+    "args": [
+      
+    ],
+    "exps": [
+      "The example below returns the value of 0036000000QKv5TAAT.",
+      "%%=LongSFID(\"0036000000QKv5T\")=%%"
+    ],
+    "def": "LongSFID(S1)",
+    "type": "function",
+    "cat": "For Use With Salesforcecom",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026ript_syntax_guide\/ampscript_functions_for_use_with_salesforcecom\/#LongSFID"
+  },
+  "Lookup": {
+    "desc": [
+      "Returns specified value from a data extension."
+    ],
+    "args": [
+      "S1    The name of the data extension from which to return the specified value",
+      "S2    Name of column from which to return a value",
+      "S3    Name of column to match on to identify the row that contains the lookup value",
+      "S4    Value to match S3 against"
+    ],
+    "exps": [
+      "%%=Lookup(\"PostalCode\",\"City\",\"PostalCode\",46016)=%%",
+      "Returns the city associated with the postal code 46016 in the PostalCode data extension:",
+      "Anderson, IN"
+    ],
+    "def": "Lookup(S1, S2, S3, S4)",
+    "type": "function",
+    "cat": "Data Extension",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/data_extension_ampscript_functions\/#Lookup"
+  },
+  "LookupOrderedRows": {
+    "desc": [
+      "Returns a specified number of rows. Treats any string value in a case-sensitive manner. You can specify multiple additional field\/value pairs as part of an AND clause."
+    ],
+    "args": [
+      "S1    The name of the data extension from which to return the specified rows",
+      "N1    Number of rows to return. A 0 value indicates to return all matching rows.",
+      "S2    Order clause in the following format: field [asc | desc] [, ... ]",
+      "S3    Field to use to build the where clause",
+      "S4    Value to use to build the where clause"
+    ],
+    "exps": [
+      "%%[",
+      "SET @Rows = LOOKUPORDEREDROWS(\"CustomObject1\",10,\"Region\",\"City\",\"greenwood\",\"SubscriberID\", 100009)",
+      "SET @RowsCSF = LOOKUPORDEREDROWSCS(\"CustomObject1\",10,\"Region\",\"City\",\"greenwood\",\"SubscriberID\", 100009)",
+      "SET @RowsCST = LOOKUPORDEREDROWSCS(\"CustomObject1\",10,\"Region\",\"City\",\"Greenwood\",\"SubscriberID\", 100009)",
+      "]%%",
+      "Case Insensitive Test:",
+      "Row Count: %%=ROWCOUNT(@Rows) =%%",
+      "Case Sensitive Test:",
+      "Row Count No Match: %%=ROWCOUNT(@RowsCSF) =%%",
+      "Row Count Match: %%=ROWCOUNT(@RowsCST) =%%"
+    ],
+    "def": "LookupOrderedRowsCS(S1, N1, S2, S3, S4)",
+    "type": "function",
+    "cat": "Data Extension",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026pscript_syntax_guide\/data_extension_ampscript_functions\/#LookupOrderedRows"
+  },
+  "LookupRows": {
+    "desc": [
+      "Returns a rowset from a data extension (S1), where the field (S2) matches the specified value (S3). Additional field value pairs (S4 - S5 .) can be specified as part of an AND clause."
+    ],
+    "args": [
+      "S1    The name of the data extension from which to return the specified rows",
+      "S2    Column name to match on to identify rows to return",
+      "S3    Value to match S2 against"
+    ],
+    "exps": [
+      "LookupRows(\"ZipCode\",\"City\",HomeCity)",
+      "Returns the ZipCode rows where the City field matches for HomeCity value."
+    ],
+    "def": "LookupRows(S1, S2, S3)",
+    "type": "function",
+    "cat": "Data Extension",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/data_extension_ampscript_functions\/#LookupRows"
+  },
+  "LookupRowsCS": {
+    "desc": [
+      "Returns a rowset from a data extension (S1), where the field (S2) matches the specified value (S3). Additional field value pairs (S4 - S5 .) can be specified as part of an AND clause. Treats string values in a case-sensitive manner."
+    ],
+    "args": [
+      "S1    The name of the data extension from which to return the specified rows",
+      "S2    Column name to match on to identify rows to return",
+      "S3    Value to match S2 against"
+    ],
+    "exps": [
+      "%%[ VAR @Rows, @RowsCSF, @RowsCST",
+      "SET @Rows = LOOKUPROWS(\"CustomObject1\",\"City\",\"greenwood\")",
+      "SET @RowsCSF = LOOKUPROWSCS(\"CustomObject1\",\"City\",\"greenwood\")",
+      "SET @RowsCST = LOOKUPROWSCS(\"CustomObject1\",\"City\",\"Greenwood\")",
+      "]%%",
+      "Case Insensitive Test:",
+      "Row Count: %%=ROWCOUNT(@Rows) =%%",
+      "Case Sensitive Test:",
+      "Row Count No Match: %%=ROWCOUNT(@RowsCSF) =%%",
+      "Row Count Match: %%=ROWCOUNT(@RowsCST) =%%"
+    ],
+    "def": "LookupRowsCS(S1, S2, S3)",
+    "type": "function",
+    "cat": "Data Extension",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/data_extension_ampscript_functions\/#LookupRowsCS"
+  },
+  "Lowercase": {
+    "desc": [
+      "Returns the specified value in all lowercase letters."
+    ],
+    "args": [
+      "S1    Value to return in lowercase letters"
+    ],
+    "exps": [
+      "Given @name=MARY KAY",
+      "%%=Lowercase(@name)=%%",
+      "System returns:",
+      "mary kay"
+    ],
+    "def": "Lowercase(S1)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Lowercase"
+  },
+  "MD5": {
+    "desc": [
+      "Converts a string to a 16-byte MD5 hash value. This function returns a hex representation of the 16-byte MD5 hash result. This is a one-way hash conversion and does not allow later decryption."
+    ],
+    "args": [
+      "S1    The string to convert to a hex representation of the 16-byte MD5 hash result",
+      "S2    (Optional) The character set to use for the encoding; this function defaults to UTC-8 if not specified. You can also specify         UTC-16."
+    ],
+    "exps": [
+      "MD5(\"This is a string.\")",
+      "Returns the MD5 hash tag 13562b471182311b6eea8d241103e8f0.",
+      "MD5(\"This is a string.\", \"UTF-16\")",
+      "Returns the MD5 hash tag 992b4a733b5f27475f52021f09120cc5."
+    ],
+    "def": "MD5(S1,S2)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#MD5"
+  },
+  "Mod": {
+    "desc": [
+      "Returns the remainder after dividing the first number by the second number."
+    ],
+    "args": [
+      "N1    Value to be divided-the dividend",
+      "N2    The value to divide by-the divisor"
+    ],
+    "exps": [
+      "Given @abc=10 and @def=4",
+      "%%=Mod(@abc,@def)=%%",
+      "System returns:",
+      "2"
+    ],
+    "def": "Mod(N1, N2)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Mod"
+  },
+  "Multiply": {
+    "desc": [
+      "Returns the product of multiplying two numbers."
+    ],
+    "args": [
+      "N1    A factor to be multiplied",
+      "N2    A factor to be multiplied"
+    ],
+    "exps": [
+      "Given @abc=10 and @def=5",
+      "%%=Multiply(@abc,@def)=%%",
+      "System returns:",
+      "50"
+    ],
+    "def": "Multiply(N1, N2)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Multiply"
+  },
+  "Now": {
+    "desc": [
+      "Returns the current system date and time."
+    ],
+    "args": [
+      "P1    Optional parameter. Enter 1 or true to indicate true to preserve the email sent time for post-send resolution of Now."
+    ],
+    "exps": [
+      "Given the date and time 10 a.m., March 1, 2008.",
+      "Now()",
+      "System returns:",
+      "3\/1\/2008  10:00:00"
+    ],
+    "def": "Now(P1)",
+    "type": "function",
+    "cat": "Datetime",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/datetime_ampscript_functions\/#Now"
+  },
+  "Output": {
+    "desc": [
+      "Returns the results of AMPscript code executed within a code block and includes the results inside the rendered content. This function also appends a CRLF following the results. The function does not return any passed direct literals."
+    ],
+    "args": [
+      "V1    The code that produces the results to be output by the system"
+    ],
+    "exps": [
+      "%%[ var @output",
+      "Set @output = \"My output\"",
+      "OutputLine(Concat(@output,\" is a success!\")) ]%%",
+      "System outputs:",
+      "My output is a success!",
+      "Note that the system outputs the CRLF after the string of text."
+    ],
+    "def": "OutputLine(C1)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Output"
+  },
+  "ProperCase": {
+    "desc": [
+      "Returns specified string with initial letter of each word capitalized."
+    ],
+    "args": [
+      "S1    String to return with initial capitalization"
+    ],
+    "exps": [
+      "Given @name=mary kay",
+      "%%=ProperCase(@name)=%%",
+      "System returns:",
+      "Mary Kay"
+    ],
+    "def": "ProperCase(S1)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#ProperCase"
+  },
+  "QueryParameter": {
+    "desc": [
+      "Retrieves the value from a query string, based on the key that was defined for it. This is a way for a page, through the URL, to provide information on who is visiting a site."
+    ],
+    "args": [
+      "S1    Key to pull value with",
+      "URL Example"
+    ],
+    "exps": [
+      "http:\/\/example.com?j=Tim",
+      "AMPscript Example",
+      "SET@VAR=QUERYPARAMETER(\"j\")",
+      "System returns:",
+      "Tim"
+    ],
+    "def": "QueryParameter(S1)",
+    "type": "function",
+    "cat": "Microsite And Landing Page",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026yntax_guide\/microsite_and_landing_page_ampscript_functions\/#QueryParameter"
+  },
+  "RaiseError": {
+    "desc": [
+      "Raises the error given in S1 and stops processing of job. If optional B1 is included with a value of true, this function stops the send for the current subscriber only."
+    ],
+    "args": [
+      "S1    The error message to be displayed",
+      "B1    Optional - a value of true stops the send for the current subscriber only",
+      "S2    Optional - displays API Error Code",
+      "S3    Optional - displays API Error Number",
+      "B2    Optional - records information written to data extension before the error occurs. A value of 1 retains information written to data extensions before the error occurs, even if the subscriber is skipped.",
+      "The B2 flag applies to data written by the following AMPscript functions:",
+      "InsertDE",
+      "InsertData",
+      "UpdateDE",
+      "UpdateData",
+      "UpsertDE",
+      "UpsertData",
+      "DeleteDE",
+      "DeleteData"
+    ],
+    "exps": [
+      "RaiseError(\"An Error Occurred\")",
+      "System returns the error message \"An Error Occurred\" and stops the job.",
+      "RaiseError(\"Do not send to subscriber\", true)",
+      "System returns the error message \"Do not send to subscriber\" and stops the send to that subscriber only.",
+      "Please note that because the system pre-processes and builds these emails, tracking and reporting numbers include these emails despite the errors and may cause inaccuracies. Use this function to handle the errors of a small number of subscribers, rather than as a method to segment out large numbers of subscribers. Instead, use query activities and exclusion lists to handle your segmentation needs."
+    ],
+    "def": "RaiseError(S1,B1,S2,S3,B2)",
+    "type": "function",
+    "cat": "Api",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/api_ampscript_functions\/#RaiseError"
+  },
+  "Random": {
+    "desc": [
+      "Returns a random integer between the values you specify (inclusive)."
+    ],
+    "args": [
+      "I1    The least value the returned random integer can be",
+      "I2    The greatest value the returned random integer can be"
+    ],
+    "exps": [
+      "Given @low=2 and @high=200",
+      "%%=Random(@low,@high)=%%",
+      "System returns a random value greater than or equal to 2 and less than or equal to 200."
+    ],
+    "def": "Random(I1, I2)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Random"
+  },
+  "Redirect": {
+    "desc": [
+      "Redirects the recipient's browser to the specified URL."
+    ],
+    "args": [
+      "S1    The URL to which to redirect"
+    ],
+    "exps": [
+      "When inserted into a landing page, the code below redirects the browser to example.com.",
+      "%%=Redirect(\"http:\/\/example.com\")=%%"
+    ],
+    "def": "Redirect(S1)",
+    "type": "function",
+    "cat": "Microsite And Landing Page",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026ript_syntax_guide\/microsite_and_landing_page_ampscript_functions\/#Redirect"
+  },
+  "RedirectTo": {
+    "desc": [
+      "Allows a client to specify the target of a link be a complete URL stored in an attribute, DE (data extension) field, or variable. This function may be used only in HTML emails within the href attribute of an <A> tag. In text emails, it must be prefixed with\"http:\/\/\" and there can be no spaces within the parentheses. In order to retain tracking information for clicked links, you must include the anchor tags (<a><\/a>) within the email itself and not the link retrieved via the AMPscript."
+    ],
+    "args": [
+      "S1    Function or substitution string to which to redirect"
+    ],
+    "exps": [
+      "Given the data extension Vacation_Deals:",
+      "Customer_ID     Type         Link 123                    Flight        http:\/\/example.com\/flights\/ 123                    Car            http:\/\/example.com\/cars\/ 456                    Hotel        http:\/\/example.com\/hotels\/",
+      "%%[",
+      "Var @rows, @link, @cntr, @type",
+      "Set @rows=LookupRows(\"Vacation_Deals\",\"CustomerID\",\"123\")",
+      "For @cntr=1 to Rowcount(@rows) do",
+      "set @type=Field(Row(@rows, @cntr),\"type\")",
+      "set @link=Field(Row(@rows, @cntr),\"link\")",
+      "]%%",
+      "<a href=\"%%=RedirectTo(@link)=%%\">%%=v(@type)=%%<\/a>",
+      "%%[",
+      "Next @cntr",
+      "]%%",
+      "System returns:",
+      "Flight Deals",
+      "Car Deals",
+      "Where Flight Deals links to http:\/\/example.com\/flights\/ and Car Deals links to http:\/\/example.com\/cars\/.",
+      "You can also use this function to include data extension values at the end of a hyperlink within an email message, as shown in the example below:",
+      "%%[Set @email = 'aruiz@example.com'",
+      "Set @firstName = 'Angel'",
+      "Set @url = Concat('https:\/\/www.example.com?email=',@email,'&name=',@firstName)]%%",
+      "<a href = \"%%=RedirectTo(@url)=%%\">Click Here<\/a>",
+      "System returns:",
+      "https:\/\/www.example.com?email=aruiz@...com&name=Angel"
+    ],
+    "def": "RedirectTo(S1)",
+    "type": "function",
+    "cat": "Http",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/http_ampscript_functions\/#RedirectTo"
+  },
+  "RegExMatch": {
+    "desc": [
+      "Allows you to use a regular expression to search for information in a string."
+    ],
+    "args": [
+      "S1    The string to be searched",
+      "S2    The regular expression to use in the search",
+      "S3    The name or ordinal of the matching group to return",
+      "S4    Repeating string parameter of regular expression options to use",
+      "You can use any value from the .NET RegexOptions enumeration, such as IgnoreCase and Multiline."
+    ],
+    "exps": [
+      "The sample AMPscript below shows how to assign regular expressions and use the RegExMatch function to search a string for results.",
+      "%%[",
+      "VAR @sourceStr, @regEx1, @regEx2",
+      "SET @sourceStr = \"ABC_123_DEF_456\";",
+      "\/* RegEx without group names *\/",
+      "SET @regEx1 = \".*_([0-9]+)_.*_([0-9]+)\"",
+      "\/* RegEx with group names *\/",
+      "SET @regEx2 = \".*_(?<FirstNumber>[0-9]+)_.*_(?<SecondNumber>[0-9]+)\"",
+      "]%%",
+      "By Group ID:",
+      "Group 1:  %%=RegExMatch(@sourceStr, @regEx1, 1)=%%",
+      "Group 2:  %%=RegExMatch(@sourceStr, @regEx1, \"2\")=%%",
+      "By Group Name:",
+      "First Number:   %%=RegExMatch(@sourceStr, @regEx2, \"FirstNumber\")=%%",
+      "Second Number:  %%=RegExMatch(@sourceStr, @regEx2, \"SecondNumber\")=%%",
+      "%%[",
+      "\/* Check for possible match. *\/",
+      "VAR @result",
+      "SET @result = RegExMatch(\"ABC_dEF_GHI\", \".*_(D..)_.*\", 0, \"IgnoreCase\", \"Multiline\")",
+      "IF Length(@result) > 0 THEN]%%",
+      "Matched!",
+      "%%[ ELSE ]%%",
+      "No match...",
+      "%%[ ENDIF ]%%"
+    ],
+    "def": "RegExMatch(S1,S2,S3,S4...Sn)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#RegExMatch"
+  },
+  "Replace": {
+    "desc": [
+      "Replaces the first string value with the second string value in the variable."
+    ],
+    "args": [
+      "V1    The variable on whose value the replace operates",
+      "S1    The string to replace",
+      "S2    The string to use to replace S1"
+    ],
+    "exps": [
+      "Given @name=The 2007 model is better.",
+      "%%=Replace(@name,\"2007\",\"2008\")=%%",
+      "System returns:",
+      "The 2008 model is better."
+    ],
+    "def": "Replace(V1, S1, S2)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Replace"
+  },
+  "ReplaceList": {
+    "desc": [
+      "Searches a string value for one or more string values you specify and replaces those values with another string value."
+    ],
+    "args": [
+      "S1    String value to search",
+      "S2    Replacement string",
+      "S3.Sn    String values to be replaced with the value in S2"
+    ],
+    "exps": [
+      "ReplaceList(\"ABCDEFG\", \"X\", \"A\", \"C\", \"E\", \"G\")",
+      "System returns:",
+      "XBXDXFX"
+    ],
+    "def": "ReplaceList(S1, S2, S3,...Sn)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#ReplaceList"
+  },
+  "RequestParameter": {
+    "desc": [
+      "Returns the value of a parameter passed into the query string of a landing page URL."
+    ],
+    "args": [
+      "P1    The parameter from which the value is requested"
+    ],
+    "exps": [
+      "RequestParameter(\"ProductID\")",
+      "System returns the value of ProductID after it has been passed into the query string of the landing page URL."
+    ],
+    "def": "RequestParameter(P1)",
+    "type": "function",
+    "cat": "Microsite And Landing Page",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026tax_guide\/microsite_and_landing_page_ampscript_functions\/#RequestParameter"
+  },
+  "RetrieveMscrmRecords(S1.2cS2.2cS3a.2cS3b.2cS3c)": {
+    "desc": [
+      "Retrieves multiple CRM records. Use fields in the target entity or select fields from related entities by using Many:1 lookup attributes."
+    ],
+    "args": [
+      "S1                    The name of the Dynamics CRM entity from which to retrieve records",
+      "S2                    A comma-separated list of fields to retrieve",
+      "S3a, S3b, S3c    Field to check value of, operator, and value"
+    ],
+    "exps": [
+      "You can select the name of the parent account by including parentaccount.id name in the list of fields. You can also filter on Many:1 lookup attributes by using the same nomenclature. To retrieve accounts where the parent account's name is Example.com, include \"parentaccountid.name\",\"=\",\"Example.com\" in your filters. All values regularly retrieved in Fetch XML queries are returned. If parentaccount.id is one of the fields to be returned, the results will have columns parentaccountid, parentaccountid.name, and parentaccountid.type.",
+      "%%[",
+      "\/* Sample Code - this retrieves all contacts where the first name is John *\/",
+      "var @records_retrieved, @counter, @firstname, @lastname, @id",
+      "set @records_retrieved = retrievemscrmrecords('contact', 'contactid,firstname,lastname', 'firstname', '=', 'john')",
+      "]%%",
+      "<p>Contacts:<\/p><br><br>",
+      "%%[",
+      "for @counter = 1 to rowcount(@records_retrieved) do",
+      "set @firstname = field(row(@records_retrieved,@counter),'firstname')",
+      "set @lastname = field(row(@records_retrieved,@counter),'lastname')",
+      "set @id = field(row(@records_retrieved,@counter),'contactid')",
+      "]%%",
+      "<p>First: &nbsp; &nbsp; %%=v(@firstname)=%% <\/p>",
+      "<p>Last: &nbsp; &nbsp; %%=v(@lastname)=%% <\/p>",
+      "<p>Id: &nbsp; &nbsp; %%=v(@id)=%% <\/p>  <br><br>",
+      "%%[next @counter ]%%"
+    ],
+    "def": "RetrieveMscrmRecords(S1,S2,S3a,S3b,S3c)",
+    "type": "function",
+    "cat": "For Use With Microsoft Dynamics Crm",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026ith_microsoft_dynamics_crm\/#RetrieveMscrmRecords(S1.2cS2.2cS3a.2cS3b.2cS3c)"
+  },
+  "RetrieveMscrmRecordsFetchXML(S1)": {
+    "desc": [
+      "Takes a correctly formed Fetch XML query and returns the attributes specified in the query."
+    ],
+    "args": [
+      "S1    Microsoft Dynamics CRM Fetch XML query"
+    ],
+    "exps": [
+      "SET @FetchXML = concat('<fetch mapping=\"logical\" count=\"1\" version=\"1.0\"> <entity name=\"contact\"> <attribute name=\"contactid\" \/> <attribute name=\"emailaddress1\" \/> <attribute name=\"firstname\" \/> <attribute name=\"lastname\" \/> <filter> <condition attribute=\"contactid\" operator=\"eq\" value=\"', @SubscriberKey, '\" \/> <\/filter> <\/entity><\/fetch>') SET @RowSet_All = RetrieveMscrmRecordsFetchXML(@FetchXML) IF Rowcount(@RowSet_All) >= 1 ThenSET @RowSet = Row(@RowSet_All, 1)set @contactid = Field(@Rowset,'contactid', 0)set @emailaddress1 = Field(@Rowset,'emailaddress1', 0)set @firstname = Field(@Rowset,'firstname', 0)set @lastname = Field(@Rowset,'lastname', 0)ENDIF"
+    ],
+    "def": "RetrieveMscrmRecordsFetchXML(S1)",
+    "type": "function",
+    "cat": "For Use With Microsoft Dynamics Crm",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026tions_for_use_with_microsoft_dynamics_crm\/#RetrieveMscrmRecordsFetchXML(S1)"
+  },
+  "RetrieveSalesforceJobSources": {
+    "desc": [
+      "Returns a record set with three columns from the job with the specified ID. The three columns are listed below:",
+      "SourceID",
+      "SourceType",
+      "IsInclusionSource"
+    ],
+    "args": [
+      "P1    jobID",
+      "Notes",
+      "This function does not return any information on the status of the job itself. For example, the function will return the same information from a completed job as it does from a job that was started and then canceled. This information should not be used as a guarantee that the send was completed."
+    ],
+    "exps": [
+      
+    ],
+    "def": "RetrieveSalesforceJobSources(P1)",
+    "type": "function",
+    "cat": "For Use With Salesforcecom",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026pscript_functions_for_use_with_salesforcecom\/#RetrieveSalesforceJobSources"
+  },
+  "RetrieveSalesforceObjects": {
+    "desc": [
+      "Returns a record set with the selected information from Salesforce objects that match the criteria you specify. This function works only if your account is integrated with a Salesforce account.",
+      "Multiple sets of criteria are joined by an AND operator."
+    ],
+    "args": [
+      "S1    The type of object from which to retrieve information. For example, Lead or CustomObject __C",
+      "S2    The names of the fields from which to retrieve information. This variable can contain multiple comma-separated field names. For example, \"FirstName,LastName\"",
+      "S3a.Sna    The names of the fields to use to match the record for selection (the WHERE clause). This variable contains only one field name. For example, if you enter FirstName for the S3a variable, the system will select records based on the value in the FirstName field.",
+      "S3b.Snb    The operator to use to compare the value in the S3a field to the value you enter in the S3c field. Valid values include:",
+      "= (is equal to)",
+      "< (is less than)",
+      "> (is greater than)",
+      "!= (is not equal to)",
+      "<= (is less than or equal to)",
+      ">= (is greater than or equal to)",
+      "S3c.Snc    The value to which to compare the S3a field value for record selection."
+    ],
+    "exps": [
+      "%%[ var @rs",
+      "Set @rs= RetrieveSalesforceObjects(\"Lead\", \"Id, FirstName,LastName\", \"region\", \"=\", \"west\")",
+      "]%%",
+      "The system returns the first name and last name of all leads in your Salesforce account where the region equals west."
+    ],
+    "def": "RetrieveSalesforceObjects(S1,S2,S3a,S3b,S3c,...Sna,Snb,Snc)",
+    "type": "function",
+    "cat": "For Use With Salesforcecom",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026\/ampscript_functions_for_use_with_salesforcecom\/#RetrieveSalesforceObjects"
+  },
+  "Row": {
+    "desc": [
+      "Returns specified row from specified rowset or array."
+    ],
+    "args": [
+      "RS    The rowset",
+      "I1    The count of the row to return"
+    ],
+    "exps": [
+      "%%=Row(@Rowset,1)=%%",
+      "System returns the first row of the rowset contained in the @Rowset variable."
+    ],
+    "def": "Row(RS, I1)",
+    "type": "function",
+    "cat": "Content",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/content_ampscript_functions\/#Row"
+  },
+  "RowCount": {
+    "desc": [
+      "Returns the number of rows in a specified rowset or array."
+    ],
+    "args": [
+      "RS    The rowset"
+    ],
+    "exps": [
+      "%%=RowCount(LookupRows(\"PostalCode\",\"City\",\"Indianapolis\"))=%%",
+      "System returns the number of rows in the PostalCode data extension whose City column contains the value Indianapolis."
+    ],
+    "def": "RowCount(RS)",
+    "type": "function",
+    "cat": "Content",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/content_ampscript_functions\/#RowCount"
+  },
+  "SetObjectProperty": {
+    "desc": [
+      "Sets a value for an object created by the CreateObject function."
+    ],
+    "args": [
+      "O1    The API object receiving the assigned value",
+      "S1    The name of the property being assigned",
+      "S2    The value of the property being assigned"
+    ],
+    "exps": [
+      "The following example creates an API object named \"Subscriber\" and gives it the \"EmailAddress\" property with the value of an email address.",
+      "SET @subscriber=CreateObject(\"Subscriber\")",
+      "SetObjectProperty(@subscriber,\"EmailAddress\",\"user@example.com\")",
+      "The following example creates an API object named \"Attribute\", gives it a name of \"First Name\", and sets the value to John.",
+      "SET @attribute=CreateObject(Attribute)",
+      "SetObjectProperty(@attribute,\"Name\",\"First Name\")",
+      "SetObjectProperty(@attribute,\"Value\",\"John\")"
+    ],
+    "def": "SetObjectProperty(O1,S1,S2)",
+    "type": "function",
+    "cat": "Api",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/api_ampscript_functions\/#SetObjectProperty"
+  },
+  "SetSmsConversationNextKeyword": {
+    "desc": [
+      "Sets the keyword for the next conversation path based on an SMS response from an MO user.  This can be the current keyword or a new keyword for a different conversation path."
+    ],
+    "args": [
+      "S1    The short code of the SMS service",
+      "S2    This string can pass in the MOBILE_NUMBER variable for  the user's mobile number",
+      "S3    The keyword name to set as the next conversation keyword"
+    ],
+    "exps": [
+      "During a conversation between the MT user and the MO user, this example will change to the conversation path indicated by the EXAMPLE keyword.",
+      "%%=SetSmsConversationNextKeyword(\"12345\",MOBILE_NUMBER,\"EXAMPLE\")=%%",
+      "The conversation is moved to the new path indicated and proceeds from there.  Please note that this example does not execute the set keyword immediately; it sets the keyword to handle the next message from the MO user."
+    ],
+    "def": "SetSmsConversationNextKeyword(S1,S2,S3)",
+    "type": "function",
+    "cat": "Content",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026pt_syntax_guide\/content_ampscript_functions\/#SetSmsConversationNextKeyword"
+  },
+  "SetStateMscrmRecord": {
+    "desc": [
+      "Sets state and status of the indicated record. Provides \"-1\" as the status value for the state's default status.  No return value.",
+      "Some entities, including Opportunity, require special CRM requests to change their state. This method will not work for those entities."
+    ],
+    "args": [
+      "S1    The GUID of the record to set the state and status for",
+      "S2    The Dynamics CRM entity name of the record",
+      "S3    The state to set, such as \"Active\" or \"Inactive\"",
+      "S4    The status to set, such as \"1\" or \"0\"",
+      "%%[",
+      "\/* sample code to change the state of an account to inactive *\/",
+      "SetStateMscrmRecord(\"00000000-0000-0000-0000-000000000001\", \"account\", \"Inactive\", \"-1\")",
+      "]%%",
+      "Special Attribute Types",
+      "Lookup",
+      "If the attribute specified can be related to multiple Dynamics CRM entities, you must specify the type of entity the attribute belongs to by adding |lookup (replacing lookup with the entity). For example, the customerid field could be related to an account or contact. If it's related to an account, specify this by adding |account at the end of the attribute.",
+      "Party List",
+      "By including |partyentityname (substituting your name for the text following the pipe) at the end of a series of fields and values, you can create a record on the party list with those fields and values. Only one record will be created, but any values (except for another party list) can be populated. This attribute is specifically for use with campaign responses, and the party list maps directly to the customer field on a campaign response."
+    ],
+    "exps": [
+      "\"field,value,field2,value2\"|examplepartylist",
+      "The above text would create a record on example partylist with two fields (field and field 2) assigned different values (value and value2, respectively)."
+    ],
+    "def": "SetStateMscrmRecord(S1,S2,S3,S4)",
+    "type": "function",
+    "cat": "For Use With Microsoft Dynamics Crm",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026pscript_functions_for_use_with_microsoft_dynamics_crm\/#SetStateMscrmRecord"
+  },
+  "SHA256": {
+    "desc": [
+      "Returns an SHA256 hash tag based on the string value passed through the function."
+    ],
+    "args": [
+      "S1    The alphanumeric string on which the SHA256 hash tag is based",
+      "S2    (Optional) The character set to use for the encoding; this function defaults to UTF-8 if not specified. You can also specify UTF-16."
+    ],
+    "exps": [
+      "%%=SHA256(\"Insert Text Here\",\"UTF-16\")=%%",
+      "The above function returns a hash tag in UTF-16 format based off of the text string \"Insert Text Here.\""
+    ],
+    "def": "SHA256(S1,S2)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#SHA256"
+  },
+  "SHA512": {
+    "desc": [
+      "Returns an SHA512 hash tag based on the string value passed through the function."
+    ],
+    "args": [
+      "S1    The alphanumeric string on which the SHA512 hash tag is based",
+      "S2    (Optional) The character set to use for the encoding; this function defaults to UTF-8 if not specified. You can also specify UTF-16."
+    ],
+    "exps": [
+      "%%=SHA512(\"Insert Text Here\",\"UTF-16\")=%%",
+      "The above function returns a hash tag in UTF-16 format based off of the text string \"Insert Text Here.\""
+    ],
+    "def": "SHA512(S1,S2)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#SHA512"
+  },
+  "StringToDate": {
+    "desc": [
+      "Parses a datetime string with the user's current settings and returns a .NET datetime object."
+    ],
+    "args": [
+      "S1    String to be parsed",
+      "S2    (Optional) The character set to use for the encoding; this function defaults to UTC-8 if not specified. You can also specify UTC-16."
+    ],
+    "exps": [
+      "StringToDate(\"2009-10-31 08:00 AM\")",
+      "System returns a datetime object with a value of 8am on October 31st, 2009."
+    ],
+    "def": "StringToDate(S1,S2)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#StringToDate"
+  },
+  "StringToHex": {
+    "desc": [
+      "Returns the hex string of bytes that make up a string value."
+    ],
+    "args": [
+      "S1    The string to be encoded",
+      "S2    (Optional) The character set to use for the encoding; this function defaults to UTC-8 if not specified. You can also specify UTC-16."
+    ],
+    "exps": [
+      "StringToHex(\"This is a string.\")",
+      "Returns the hex string 54686973206973206120737472696e672e."
+    ],
+    "def": "StringToHex(S1,S2)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#StringToHex"
+  },
+  "Substring": {
+    "desc": [
+      "Returns the portion of the specified string starting with the specified character position and no longer than the specified length. If the specified character position is greater than the length of the specified string, an empty string is returned."
+    ],
+    "args": [
+      "S1    The string from which to return a portion",
+      "I1    The character position at which to begin the substring",
+      "I2    Maximum length of the substring"
+    ],
+    "exps": [
+      "%%=Substring(\"abcdef\",2,2)=%%",
+      "System returns:",
+      "bc"
+    ],
+    "def": "Substring(S1, I1, I2)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Substring"
+  },
+  "Subtract": {
+    "desc": [
+      "Returns the difference of two integers."
+    ],
+    "args": [
+      "N1    Number from which to subtract N2",
+      "N2    Number to subtract from N1"
+    ],
+    "exps": [
+      "Given @abc=20 and @def=5",
+      "%%=Subtract(@abc,@def)=%%",
+      "System returns:",
+      "15"
+    ],
+    "def": "Subtract(N1, N2)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Subtract"
+  },
+  "SystemDateToLocalDate": {
+    "desc": [
+      "Converts a system datetime string or object to the user's local time."
+    ],
+    "args": [
+      "S1    The system time to convert"
+    ],
+    "exps": [
+      "%%[",
+      "VAR @currentSystemTime",
+      "SET @currentSystemTime = NOW()",
+      "]%%",
+      "Local Time For User:  %%=SystemDateToLocalDate(@currentSystemTime)=%%",
+      "The system returns the local time based off of the value contained in the @currentSystemTime variable."
+    ],
+    "def": "SystemDateToLocalDate(S1)",
+    "type": "function",
+    "cat": "Datetime",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/datetime_ampscript_functions\/#SystemDateToLocalDate"
+  },
+  "TransformXML": {
+    "desc": [
+      "Applies an XSL transform to an XML document."
+    ],
+    "args": [
+      "S1    The XML to be transformed",
+      "S2    The XSL document to be used in the transformation"
+    ],
+    "exps": [
+      "Given the example.xml and the transform.xsl files",
+      "%%= TransformXML(GetPortfolioItem(\"formGenXML\"),GetPortfolioItem(\"formGenXSL\")) =%%",
+      "The function uses the GetPortfolioItem() functions to retrieve the formGenXML and formGenXSL files from Portfolio. The ExactTarget application then applies the formGenXSL file to the formGenXML file as part of the transformation process."
+    ],
+    "def": "TransformXML(S1,S2)",
+    "type": "function",
+    "cat": "Content",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/content_ampscript_functions\/#TransformXML"
+  },
+  "TreatAsContent": {
+    "desc": [
+      "Treats the string as though it had come in from a content area.",
+      "To retrieve tracking information associated with these strings, you should wrap the embedded links within your HTML content using the RedirectTo() function and use the TreatAsContent() function to treat your string as if it came from a content areas."
+    ],
+    "args": [
+      "S1    String to return"
+    ],
+    "exps": [
+      "TreatAsContent(Field(@row,\"Content\"))",
+      "Returns",
+      "A string of text which, if personalization strings are included, will replace those strings with the appropriate data."
+    ],
+    "def": "TreatAsContent(S1)",
+    "type": "function",
+    "cat": "Content",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/content_ampscript_functions\/#TreatAsContent"
+  },
+  "TreatAsContentArea": {
+    "desc": [
+      "Treats content retrieved from a data extension or other source as though it is fixed content coming from a content area."
+    ],
+    "args": [
+      "S1    A key value to be used to identify the content specified in the second string. You can use the same key to identify distinct text and HTML versions of the content, as a key in a text content is considered distinct from a key in a HTML context. The application processes all keys in a case-insensitive manner.",
+      "S2    Content to be stored for an email send under the key specified in the first string. You can retrieve content using the HTTPGET() or Lookup() AMPscript functions.",
+      "S3    (optional) The impression region name for the virtual content area to be used for tracking purposes.",
+      "Once you specify a key value for content retrieved using this function and process it to build subscriber messages, that information becomes read-only. Future calls using that key result in the same information as specified the first time the call was made. Each email has a limit of 300 virtual content areas created through this function. If you exceed the limit, the additional calls will behave similarly to the TreatAsContent() function and further virtual content areas will not be created for any additional keys.",
+      "Because a triggered send uses the same JobID for all sends, this function can exceed the 300 virtual content area limit and result in problems providing accurate tracking information. In this case, you should wrap the embedded links within your HTML content using the RedirectTo() function and use the TreatAsContent() function to treat your string as if it came from a content areas.",
+      "If you have enabled link tracking, the links, forms and calls to ExactTarget landing pages will be wrapped in order to provide tracking information. You can use the virtual content areas created via this call both for other emails in the send using the virtual content area key and for building post-send content (such as View As A Web Page).",
+      "Use TreatAsContentArea() when you are sending content to a large number of subscribers, and use TreatAsContent() when sending content unique to a single subscriber."
+    ],
+    "exps": [
+      "The sample code below pulls content from a data extension and saves it for reuse as a virtual content area under the key VirtualCA1:",
+      "%%=TreatAsContentArea(\"VirtualCA1\", Lookup(\"DEName\", \"DEContentColumn\",\"KeyField\", KeyValue))=%%",
+      "The sample code below pulls content from a data extension and saves it for reuse as a virtual content area under a key specified through the KeyValue attribute or data extension field.",
+      "%%=TreatAsContentArea(KeyValue, Lookup(\"DEName\", \"DEContentColumn\",\"KeyField\", KeyValue))=%%",
+      "The sample code below pulls content from a data extension, saves it for reuse as a virtual content area under the key VirtualCA1, and assigns it the impression region name of Impression Region One:",
+      "%%=TreatAsContentArea(\"VirtualCA1\", Lookup(\"DEName\", \"DEContentColumn\",\"KeyField\", KeyValue), \"Impression Region One\")=%%"
+    ],
+    "def": "TreatAsContentArea(S1,S2,S3)",
+    "type": "function",
+    "cat": "Content",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/content_ampscript_functions\/#TreatAsContentArea"
+  },
+  "Trim": {
+    "desc": [
+      "Returns the value of the string parameter with the leading and trailing white space removed."
+    ],
+    "args": [
+      "S1    String from which to trim white space"
+    ],
+    "exps": [
+      "%%=Trim(\"   Text   \")=%%",
+      "System returns:",
+      "Text"
+    ],
+    "def": "Trim(S1)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Trim"
+  },
+  "UpdateData": {
+    "desc": [
+      "This function updates an existing row in a data extension (S1) for the specified number of columns used to build the where clause (N1) listed in name value pairs (S3, S4 .) followed by a list of columns to be updated in name value pairs (SN, SN+1). The number of rows affected is returned. For use with landing pages and SMS messages only."
+    ],
+    "args": [
+      "S1    The name of the data extension from which to update the specified row",
+      "N1    Number of columns used to build the where clause",
+      "S2, S3    Column name(s) and column value(s) to use to build the where clause",
+      "S4, S5    Column name(s) and column value(s) to use to build the insert clause"
+    ],
+    "exps": [
+      "UpdateData(\"SendDE\",1,\"_SubscriberKey\",_SubscriberKey,\"DateSent\",NOW())"
+    ],
+    "def": "UpdateData(S1, N1, S2, S3, S4, S5)",
+    "type": "function",
+    "cat": "Data Extension",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/data_extension_ampscript_functions\/#UpdateData"
+  },
+  "UpdateDE": {
+    "desc": [
+      "This function updates an existing row in a data extension (S1) for the specified number of columns used to build the where clause (N1) listed in name value pairs (S2, S3.) followed by a list of columns to be updated in name value pairs (SN, SN+1). No value is returned. For use with email messages at send time only."
+    ],
+    "args": [
+      "S1    The name of the data extension from which to update the specified row",
+      "N1    Number of columns used to build the where clause",
+      "S2, S3    Column name(s) and column value(s) to use to build the where clause",
+      "S4, S5    Column name(s) and column value(s) to use to build the insert clause"
+    ],
+    "exps": [
+      "UpdateDE(\"SendDE\",1,\"_SubscriberKey\",_SubscriberKey,\"DateSent\",NOW())"
+    ],
+    "def": "UpdateDE(S1, N1, S2, S3, S4, S5)",
+    "type": "function",
+    "cat": "Data Extension",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/data_extension_ampscript_functions\/#UpdateDE"
+  },
+  "UpdateMscrmRecords(S1.2cS2.2cS3a.2cS3b...SNa.2cSNb)": {
+    "desc": [
+      "Updates one or more records in a Microsoft Dynamics CRM entity. Also returns the number of records that were successfully updates."
+    ],
+    "args": [
+      "S1                The name of the Microsoft Dynamics CRM entity receiving the updated records",
+      "S2                A comma-separated list of the record GUIDs to update",
+      "S3a, S3b      Name and Value parts of attributes to update on the target records"
+    ],
+    "exps": [
+      "%%[",
+      "\/* Sample Code - this updates several lead records to have Web as a Lead Source Code in Dynamics CRM *\/",
+      "var @records_updated",
+      "set @records_updated = updatemscrmrecords('lead', '2E438216-2DEE-DD11-AB3E-005056AD58C4,0A167EEC-6436-DD11-B7BE-000E7F30252C', 'leadsourcecode', '8')",
+      "]%%",
+      "<p>Count of records updated:<\/p><br>",
+      "%%=v(@records_updated)=%%"
+    ],
+    "def": "UpdateMscrmRecords(S1,S2,S3a,S3b...SNa,SNb)",
+    "type": "function",
+    "cat": "For Use With Microsoft Dynamics Crm",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026microsoft_dynamics_crm\/#UpdateMscrmRecords(S1.2cS2.2cS3a.2cS3b...SNa.2cSNb)"
+  },
+  "UpdateSingleSalesforceObject": {
+    "desc": [
+      "Updates a record in an object in your integrated Salesforce account. This function works only if your account is integrated with a Salesforce account.  Returns 1 for success or 0 for failure."
+    ],
+    "args": [
+      "S1    The type of object to update. For example, Lead or CustomObject__C.",
+      "S2    The ID of the object to update.",
+      "S3a.Sna    The name of the field to update.",
+      "S3b.Snb    The value to update the field with."
+    ],
+    "exps": [
+      "%%[",
+      "var @result",
+      "set @result = UpdateSingleSalesforceObject(\"Lead\",\"00300003yAEj\",\"Email\",\"jcc@example.com\")",
+      "]%%",
+      "The system updates the Email field on the Lead with ID 00300003yAEj to contain jcc@example.com.",
+      "Sending an Email Message to a Salesforce Object via AMPscript",
+      "Be sure to specify the UserID of the Salesforce-integrated user along with the account ID for the send.",
+      "%%[",
+      "var @senddef, @msg, @sc",
+      "Set @senddef = CreateObject(\"EmailSendDefinition\")",
+      "SetObjectProperty(@senddef, \"CustomerKey\", \"SFSend\")",
+      "Set @cid= CreateObject(\"ClientID\")",
+      "SetObjectProperty(@cid, \"ID\", \"113903\")",
+      "SetObjectProperty(@cid, \"UserID\", \"191589\")",
+      "SetObjectProperty(@senddef, \"Client\", @cid)",
+      "Set @sc = InvokePerform(@senddef,\"start\",@msg)",
+      "]%%",
+      "%%=v(@sc)=%%",
+      "<br \/>",
+      "%%=v(@msg)=%%",
+      "Updating the Campaign Status of a Lead or Contact",
+      "The sample AMPscript below uses the RetrieveSalesforceObjects() and UpdateSingleSalesforceObject() function in a landing page to update the campaign status of a Lead or Contact. When the Lead or Contact clicks a link in an email message, that link takes them to a landing page that includes the AMPscript below. The landing pages accepts the LeadID provided by the click and updates the campaign status accordingly.",
+      "%%[ Var @CamId, @Id, @Leads, @CamMems, @FirstName, @LastName, @Result, @CamMemId, @LeadId, @LongId",
+      "Set @CamId = \"YourCamIdHere\"",
+      "Set @Id = QUERYPARAMETER(\"sfid\")",
+      "Set @LongId = LongSFID(@Id)",
+      "Set @Leads = RetrieveSalesforceObjects(\"Lead\", \"Id, FirstName,LastName\", \"Id\", \"=\", @Id)",
+      "Set @row = ROW(@Leads,1)",
+      "Set @FirstName = FIELD(@row,\"FirstName\")",
+      "Set @LastName = FIELD(@row,\"LastName\")",
+      "Set @CamMem = RetrieveSalesforceObjects(\"CampaignMember\", \"Id, CampaignId, LeadId, Status\", \"CampaignId\", \"=\", @CamId)",
+      "For @i = 1 TO RowCount(@CamMem) DO",
+      "Set @row = ROW(@CamMem,@i)",
+      "Set @LeadId = FIELD(@row,\"LeadId\")",
+      "If @LeadId == @LongId Then",
+      "Set @CamMemId = FIELD(@row,\"Id\")",
+      "EndIf",
+      "Next @i",
+      "Set @Result = UpdateSingleSalesforceObject(\"CampaignMember\",@CamMemId,\"Status\",\"RSVP-Yes\")",
+      "]%%",
+      "<br \/>",
+      "Thank you %%=v(@FirstName)=%% %%=v(@LastName)=%% for signing up for the our webinar!"
+    ],
+    "def": "UpdateSingleSalesforceObject(S1,S2,S3a,S3b,...Sna,Snb)",
+    "type": "function",
+    "cat": "For Use With Salesforcecom",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026pscript_functions_for_use_with_salesforcecom\/#UpdateSingleSalesforceObject"
+  },
+  "Uppercase": {
+    "desc": [
+      "Returns the specified value in all uppercase letters."
+    ],
+    "args": [
+      "S1    Value to return in uppercase letters"
+    ],
+    "exps": [
+      "Given @name=mary kay",
+      "%%=Uppercase(@name)=%%",
+      "System returns:",
+      "MARY KAY"
+    ],
+    "def": "Uppercase (S1)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#Uppercase"
+  },
+  "UpsertContact": {
+    "desc": [
+      "This functions updates an existing Contact in the specified channel (S1) with the specified primary key (S2) and primary key value (S3). You can list as many attribute name (S4) and attribute values (S5) as necessary."
+    ],
+    "args": [
+      "S1 - The channel to update for a Contact. Possible values include the following:",
+      "Mobile",
+      "S2 - Primary key type used to locate Contact. Possible values include the following:",
+      "Phone",
+      "S3 - Value of primary key used to locate Contact",
+      "S4 - Name of attribute to upsert",
+      "S5 - Value of attribute to upsert",
+      "You can find the personalization strings associated with a Contact's attributes to use with this function on the Using Personalization Strings with AMPscript page."
+    ],
+    "exps": [
+      "The sample code below updates a Contact from a landing page.",
+      "%%[",
+      "Set @result = UpsertContact(\"mobile\",\"phone\",MOBILE_NUMBER,\"_ZipCode\",\"12342\")",
+      "]%%",
+      "The function indicates success by returning a value of 0.",
+      "The sample code below demonstrates how to take information from an SMS message. In this case, the Contact sent their ZIP code via SMS message and the [MSG(0).NOUN(0)] string captures that value:",
+      "%%[",
+      "Set @result = UpsertContact(\"mobile\",\"phone\",MOBILE_NUMBER,\"_ZipCode\",[MSG(0).NOUN(0)])",
+      "]%%",
+      "Again, the function indicates success by returning a value of 0."
+    ],
+    "def": "UpsertContact(S1,S2,S3,S4,S5...)",
+    "type": "function",
+    "cat": "Contacts",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/contacts_ampscript_functions\/#UpsertContacts"
+  },
+  "UpsertData": {
+    "desc": [
+      "This function updates an existing row in a data extension (S1) for the specified number of filter columns (N1) listed in name value pairs (S2, S3 .) followed by a list of columns to be updated in name value pairs (SN, SN+1). If no data exists in that row, the specified data is added to the row. The number of rows affected is returned. For use with landing pages and SMS messages only."
+    ],
+    "args": [
+      "S1    The name of the data extension from which to update the specified row",
+      "N1    Number of filter columns to insert into or update",
+      "S2, S3    Column name(s) and column value(s) to use to build the where clause",
+      "S4, S5    Column name(s) and column value(s) to use to build the insert clause"
+    ],
+    "exps": [
+      "UpsertData(\"SendDE\",1,\"_SubscriberKey\",_SubscriberKey,\"DateSent\",NOW())"
+    ],
+    "def": "UpsertData(S1, N1, S2, S3, S4, S5)",
+    "type": "function",
+    "cat": "Data Extension",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/data_extension_ampscript_functions\/#UpsertData"
+  },
+  "UpsertDE": {
+    "desc": [
+      "This function updates an existing row or inserts a new row if a matching row is not for update in a data extension (S1) for the specified number of filter columns (N1) listed in name value pairs (S2, S3) followed by a list of columns to be updated in name value pairs (SN, SN+1). No value is returned. For use with email messages at send time only."
+    ],
+    "args": [
+      "S1    The name of the data extension from which to update the specified row",
+      "N1    Number of filter columns used as part of the where clause",
+      "S2, S3    Column name(s) and column value(s) to use to build the where clause",
+      "S4, S5    Column name(s) and column value(s) to use to build the insert clause"
+    ],
+    "exps": [
+      "UpsertDE(\"SendDE\",1,\"_SubscriberKey\",_SubscriberKey,\"DateSent\",NOW())"
+    ],
+    "def": "UpsertDE(S1, N1, S2, S3, S4, S5)",
+    "type": "function",
+    "cat": "Data Extension",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/data_extension_ampscript_functions\/#UpsertDE"
+  },
+  "UpsertMscrmRecord(S1.2cS2.2cS3.2cS4.2cS5a.2cS5b.2cS6a.2cS6b)": {
+    "desc": [
+      "Retrieves a single record from Microsoft Dynamics CRM and sorts them using the sort field and order provided. Updates records based on Name and Value attributes. If no record is found, one is created using Name and Value attributes. Returns the GUID of the updated or created record."
+    ],
+    "args": [
+      "S1                The name of the Dynamics CRM entity for the record to upsert",
+      "S2                The field used to sort the retrieve results",
+      "S3                The order used to sort the retrieve results (ASC|DSC)",
+      "S4                The number of Name\/Value pairs of fields used to retrieve",
+      "S5a, S5b       Name\/Value pairs of attributes to filter on the target entity",
+      "S5a, S5b       Name\/Value pairs of attributes to update on the target record"
+    ],
+    "exps": [
+      
+    ],
+    "def": "UpsertMscrmRecord(S1,S2,S3,S4,S5a,S5b,S6a,S6b)",
+    "type": "function",
+    "cat": "For Use With Microsoft Dynamics Crm",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/\u2026_dynamics_crm\/#UpsertMscrmRecord(S1.2cS2.2cS3.2cS4.2cS5a.2cS5b.2cS6a.2cS6b)"
+  },
+  "URLEncode": {
+    "desc": [
+      "Returns the specified URL with spaces replaced with %20 or fully encodes all non-alphanumeric characters."
+    ],
+    "args": [
+      "S1    String containing the URL and attribute value",
+      "B1    (optional) If you do not specify this value, or if you set it to 0, the function replaces spaces in the URL with %20. If you set this value to 1, the function encodes any character illegal for use in a URL (such as spaces and accented letters) in the query string of the given URL."
+    ],
+    "exps": [
+      "URLEncode(\"http:\/\/example.com?p=first name\")",
+      "System returns:",
+      "http:\/\/example.com?p=first%20name"
+    ],
+    "def": "URLEncode(S1,B1)",
+    "type": "function",
+    "cat": "Http",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/http_ampscript_functions\/#URLEncode"
+  },
+  "V": {
+    "desc": [
+      "Outputs the value of a variable."
+    ],
+    "args": [
+      "S1    Name of the variable whose value to return"
+    ],
+    "exps": [
+      "%%[",
+      "Var @var1",
+      "Set @var1=\"Hello\"",
+      "]%%",
+      "<p>%%=v(@var1)=%%<\/p>",
+      "System returns:",
+      "Hello"
+    ],
+    "def": "V(S1)",
+    "type": "function",
+    "cat": "Utilities",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/utilities_ampscript_functions\/#V"
+  },
+  "WAT": {
+    "desc": [
+      "Returns the values of the Web Analytics Tracking (WAT) parameter with the specified external key (S1). Set this external key value in the Sender Profile Analytics Profile in the ExactTarget application. Optional parameters (S2-Sn) will be substituted for calls to the WATP function within the tracking parameter set in the Sender Profile. The WAT call parameters must use constant or numeric values. Variable, attribute, field, and faction values do not allow job-level resolution to the desired link query string parameters."
+    ],
+    "args": [
+      "S1    String to perform the match against",
+      "S2    Value with which to replace the WATP function tracking parameter"
+    ],
+    "exps": [
+      "WAT(\"Omniture\",\"1234\")",
+      "Returns the value of the Omniture tracking parameter with 1234 substituted for references to WATP(1) within the tracking parameter.",
+      "The parameter for the WATP function specifies the ordinal of the parameter inside the tracking parameter set in the Sender Profile Analytics Profile.",
+      "WAT(\"Omniture\",\"1234\",\"5678\")",
+      "Returns the value of the Omniture tracking parameter with 1234 substituted for references to WATP(1) within the tracking parameter. This call also substitutes 5678 for references to WATP(2) within the tracking parameter."
+    ],
+    "def": "WAT and WATP (S1, S2)",
+    "type": "function",
+    "cat": "Content",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/content_ampscript_functions\/#WAT"
+  },
+  "WrapLongURL": {
+    "desc": [
+      "Returns a wrapped URL for the long URL provided in the string parameter of the function. Only URLs longer than 975 characters can be modified, and this function does not replace the standard link wrapping functionality implemented in the ExactTarget application. It is intended to mitigate a known limitation with long URLs in Microsoft Outlook 2007 and applies to URLs such as those included in an image source tag."
+    ],
+    "args": [
+      "S1    The long URL to be wrapped"
+    ],
+    "exps": [
+      "In the case where an image source URL exceeds 975 characters, use the function as shown below:",
+      "WrapLongURL(\"http:\/\/example.com\/exceedinglylongimageurl.jpg\")",
+      "This function returns a wrapped URL that can be used in your send to ensure compatibility with Outlook 2007. If this function is used on a URL with less than 975 characters, the URL will pass unchanged and the call will not break the send. Links wrapped with WrapLongURL remain incompatible with Always On Clicks. If your Member DB is down, a WrapLongURL will not work."
+    ],
+    "def": "WrapLongURL(S1)",
+    "type": "function",
+    "cat": "Http",
+    "url": "http:\/\/help.exacttarget.com\/en\/documentation\/exacttarget\/content\/ampscript\/ampscript_syntax_guide\/http_ampscript_functions\/#WrapLongURL"
+  }
+}
